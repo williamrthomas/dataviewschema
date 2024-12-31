@@ -1,0 +1,280 @@
+
+## Technical Project Plan
+
+### Overview
+
+**Objective:**  
+Build a Python-based toolchain that:  
+1. Loads database schema metadata from two local CSV files:
+   - **`schema_tables.csv`**: Contains high-level descriptions of tables, including schema name, table name, and general description.
+   - **`schema_columns.csv`**: Contains detailed column-level metadata, including schema name, table name, column name, data type, primary key, foreign key info, etc.
+   
+2. Uses the OpenRouter API (compatible with OpenAI’s `openai` Python library) to:
+   - Summarize and classify the schema metadata into conceptual domains.
+   - Generate hierarchical conceptual maps and narrative lines.
+   - Produce a set of Mermaid diagrams (in Markdown format) representing the data structures.
+
+3. Write outputs (JSON summaries, Mermaid diagrams) to local files for further review.
+
+4. Maintain a running activity log (in a Markdown or text file) documenting each major step, decisions made, and output references for traceability.
+
+### Requirements
+
+**Technologies & Tools:**
+- Python 3.9+ recommended.
+- Virtual environment setup (using `venv`).
+- `openai` Python package (which will integrate with OpenRouter seamlessly).
+- CSV parsing (using Python’s built-in `csv` module or `pandas`).
+- Optionally `pandas` for convenience in data manipulation.
+- Mermaid diagram generation will be done by LLM output. No additional tool required for generation, though a VS Code extension can be used to preview them.
+
+**Data Input Files:**
+- `schema_tables.csv` (e.g. columns: `schema_name`, `table_name`, `table_description`)
+- `schema_columns.csv` (e.g. columns: `schema_name`, `table_name`, `column_name`, `data_type`, `is_primary_key`, `is_foreign_key`, `references_schema`, `references_table`, `references_column`)
+
+**OpenRouter Integration:**
+- Use the `openai` Python library.  
+- Set `OPENAI_API_BASE` and `OPENAI_API_KEY` environment variables for OpenRouter endpoint and key.  
+- You can select models by passing `model="<model_name>"` to `openai.ChatCompletion.create()` without changing code beyond the model name string.
+
+### Project Structure
+
+```
+my_project/
+  ├─ venv/                  # Virtual environment directory (created after setup)
+  ├─ data/
+  │   ├─ schema_tables.csv
+  │   ├─ schema_columns.csv
+  ├─ outputs/
+  │   ├─ logs/
+  │   │   └─ activity_log.md
+  │   ├─ intermediate/
+  │   ├─ final/
+  ├─ src/
+  │   ├─ main.py
+  │   ├─ schema_loader.py
+  │   ├─ prompt_utils.py
+  │   ├─ diagram_generator.py
+  ├─ requirements.txt
+  ├─ README.md
+```
+
+**File Descriptions:**
+- `data/`: Contains input CSV files.
+- `outputs/logs/activity_log.md`: Running activity log, updated by the agent.
+- `outputs/intermediate/`: Store intermediate JSON files (LLM responses).
+- `outputs/final/`: Store final Mermaid diagrams and summaries.
+- `src/main.py`: Entry point to orchestrate the entire workflow.
+- `src/schema_loader.py`: Code to load and structure CSV data.
+- `src/prompt_utils.py`: Contains prompt templates and helper functions for LLM interactions.
+- `src/diagram_generator.py`: Handles calling the LLM with prompts to generate Mermaid diagrams.
+- `requirements.txt`: Python dependencies.
+- `README.md`: Instructions on setup and usage.
+
+### Steps to Implement
+
+1. **Set Up Virtual Environment and Dependencies**:
+   - Create a virtual environment.
+   - Install dependencies (`openai`, `pandas` if needed).
+
+2. **Data Loading**:
+   - Implement `schema_loader.py` to parse CSV files into Python objects or DataFrames.
+   - Structure data in a dictionary keyed by schema and table.
+
+3. **LLM Interaction**:
+   - Implement `prompt_utils.py` with functions that:
+     - Prepare prompts from data structures.
+     - Call the OpenRouter API via `openai.ChatCompletion.create()`.
+     - Return and log responses.
+   
+4. **Processing Steps**:
+   - Step 1: Knowledge extraction and domain concept mapping.
+   - Step 2: Conceptual synthesis to create hierarchies and narrative lines.
+   - Step 3: Generate Mermaid diagrams and conceptual notes.
+   - Store intermediate results in `outputs/intermediate`.
+
+5. **Mermaid Diagram Generation**:
+   - `diagram_generator.py` to handle final prompts and store Mermaid diagrams in `outputs/final`.
+
+6. **Logging**:
+   - Append a timestamped entry in `outputs/logs/activity_log.md` after each major action or prompt-response cycle.
+
+7. **Model & Parameter Configuration**:
+   - Use environment variables `OPENAI_API_BASE` and `OPENAI_API_KEY`.
+   - Choose models (e.g., `gpt-4`) without changing code structure. Just pass different `model` names in `main.py`.
+
+### Instructions for the Assigned Agent
+
+**Set Up Environment:**
+
+```bash
+# From the project root:
+python3 -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+**Development Workflow:**
+1. Start a new branch (if using version control).
+2. Implement `schema_loader.py` to load CSV data into Python objects.
+3. Implement `prompt_utils.py` to handle prompt creation and LLM queries.
+4. Implement `diagram_generator.py` to produce Mermaid diagrams and save them.
+5. Update `main.py` to orchestrate the steps.
+6. After each major step, update `outputs/logs/activity_log.md` with date, time, and a summary of work done.
+
+**Regular Activity Log Updates:**
+- After loading schema: Log “Loaded schema data” with a timestamp.
+- After each LLM prompt: Log “Prompted LLM for X, received Y” with timestamps.
+- After generating artifacts: Log “Generated Artifact #N” with timestamps.
+
+**Testing:**
+- Run `python src/main.py` and verify outputs in `outputs/`.
+- Check Mermaid diagrams by opening them in VSCode’s Markdown preview.
+
+---
+
+## Sample Code Snippets
+
+**`requirements.txt`:**
+```txt
+openai==0.27.0
+pandas==2.1.0
+python-dotenv==1.0.0
+```
+
+**`src/schema_loader.py`:**
+```python
+import csv
+from pathlib import Path
+
+def load_schema_data(tables_file: Path, columns_file: Path):
+    # Load tables
+    tables = []
+    with open(tables_file, 'r', newline='', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            tables.append(row)
+
+    columns = []
+    with open(columns_file, 'r', newline='', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            columns.append(row)
+
+    # Further processing to structure data as needed
+    # Example: group by schema and table
+    schema_dict = {}
+    for t in tables:
+        s = t['schema_name']
+        tbl = t['table_name']
+        if s not in schema_dict:
+            schema_dict[s] = {}
+        schema_dict[s][tbl] = {
+            'description': t.get('table_description', ''),
+            'columns': []
+        }
+
+    for c in columns:
+        s = c['schema_name']
+        tbl = c['table_name']
+        if s in schema_dict and tbl in schema_dict[s]:
+            schema_dict[s][tbl]['columns'].append(c)
+
+    return schema_dict
+```
+
+**`src/prompt_utils.py`:**
+```python
+import os
+import openai
+from datetime import datetime
+
+OPENAI_API_BASE = os.environ.get("OPENAI_API_BASE")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+
+if OPENAI_API_BASE:
+    openai.api_base = OPENAI_API_BASE
+if OPENAI_API_KEY:
+    openai.api_key = OPENAI_API_KEY
+
+def log_activity(message: str, log_file: str = "outputs/logs/activity_log.md"):
+    with open(log_file, 'a', encoding='utf-8') as f:
+        f.write(f"{datetime.now().isoformat()} - {message}\n")
+
+def query_llm(prompt: str, model: str = "gpt-4"):
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=[{"role": "user", "content": prompt}]
+    )
+    result = response.choices[0].message.content
+    return result
+```
+
+**`src/diagram_generator.py`:**
+```python
+import json
+from .prompt_utils import query_llm, log_activity
+from pathlib import Path
+
+def generate_overview_diagram(domain_info, output_dir: Path):
+    prompt = f"""
+    Given the following domain info:
+    {json.dumps(domain_info, indent=2)}
+
+    Create a Mermaid diagram (in a code block) that shows a high-level overview of the clinical data ecosystem.
+    """
+    mermaid_code = query_llm(prompt)
+    (output_dir / "artifact_1_overview.md").write_text(mermaid_code, encoding='utf-8')
+    log_activity("Generated Artifact #1: Overview Diagram")
+```
+
+**`src/main.py`:**
+```python
+import json
+from pathlib import Path
+from schema_loader import load_schema_data
+from prompt_utils import query_llm, log_activity
+from diagram_generator import generate_overview_diagram
+
+def main():
+    log_activity("Starting process")
+
+    data_dir = Path("data")
+    out_dir = Path("outputs")
+    out_dir.mkdir(exist_ok=True)
+    (out_dir / "logs").mkdir(exist_ok=True)
+    (out_dir / "intermediate").mkdir(exist_ok=True)
+    (out_dir / "final").mkdir(exist_ok=True)
+
+    schema_data = load_schema_data(data_dir / "schema_tables.csv", data_dir / "schema_columns.csv")
+    log_activity("Loaded schema data")
+
+    # Example: Prompt LLM for domain classification
+    prompt = f"""
+    You are given a database schema structure:
+    {json.dumps(schema_data, indent=2)}
+
+    Identify conceptual domains (e.g. Patients, Encounters, Billing) and map tables to these domains.
+    Return JSON with a "domains" key.
+    """
+    domain_classification = query_llm(prompt)
+    (out_dir / "intermediate" / "domain_classification.json").write_text(domain_classification, encoding='utf-8')
+    log_activity("Obtained domain classification")
+
+    # Parse domain_classification for next step if needed...
+    domain_info = json.loads(domain_classification)
+    
+    # Generate an overview diagram
+    generate_overview_diagram(domain_info, out_dir / "final")
+
+    log_activity("Process completed")
+
+if __name__ == "__main__":
+    main()
+```
+
+---
+
+## Conclusion
+
+This plan provides a structured approach, instructions for environment setup, directory organization, code architecture, logging methodology, and integration with the OpenRouter API. The sample code snippets illustrate how to load CSV data, prompt the LLM, generate Mermaid diagrams, and maintain activity logs.
