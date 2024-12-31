@@ -1,0 +1,1053 @@
+﻿TABLEID,SCHEMANAME,TABLE DESCRIPTION,TABLE NAME,COMMENTS,CATEGORY,RELEASE,DataModel
+1,ATHENAONE,Allowable Schedule Category,ALLOWABLESCHEDULECATEGORY,Table for allowable schedule category data. Allowable schedule categories are GLOBAL or LOCAL-defined groups of insurance packages that use the same allowable schedule.,Collector,19.7,Complex
+2,ATHENAONE,Anesthesia Case,ANESTHESIACASE,Table that contains anesthesia cases.,Collector,19.7,Complex
+3,ATHENAONE,Appointment,APPOINTMENT,"Table for appointment data. Includes appointment stage information, as well as information for the patient, provider and claim information associated with the appointment.
+
+a. Layout and Notes
+- Double-booked slots: A slot which occupies the same period of time as another slot is referred to as ""double booked"". These records appear multiple times in the data table, which when aggregated avoids double-counting these slots. Each double-booked appointment will have a unique Appointment ID, however.
+- Point Values: These are arbitrary values given to appointment types and administered by the practice. This allows the practice to assign an arbitrary weighting to each appointment and analyze accordingly.
+
+b. Athena Standard Time (AST)
+If the timezone offsets and daylight saving time practice/department settings are misconfigured in any way, the data produced for this/these new column(s) may not be an accurate representation of the local time converted to eastern time.",Collector,19.7,Complex
+4,ATHENAONE,Appointment Eligibility Info,APPOINTMENTELIGIBILITYINFO,Contains copay information related to appointments.,Collector,19.7,Complex
+5,ATHENAONE,Appointment Note,APPOINTMENTNOTE,Table for appointment note data. Appointment notes are generally used to describe the patient's symptoms and reason for the appointment.,Collector,19.7,Complex
+6,ATHENAONE,Appointment Ticklers,APPOINTMENTTICKLER,Table for appointment tickler data. An appointment tickler is a note to remind staff to schedule an appointment for a patient.,Collector,19.7,Complex
+7,ATHENAONE,Appointment Type,APPOINTMENTTYPE,Table for appointment type data. Appointment types are defined and administered by individual practices.,Collector,19.7,Complex
+8,ATHENAONE,Capitation Payments,CAPPAYMENT,"Table for capitation payment data. Capitation payments are defined in athena as unpostable/remittance records of unpostable type ""CAPITATION PAYMENT"". Includes payment batch and check number information, along with the department and provider covered by the payment.
+
+a. Layout and Notes
+- Capitation Payments may or may not be linked with providers or departments. When they are not linked (i.e., Provider ID/Department ID is NULL) then it implies the payment is linked to all providers/departments.
+- This table is extracted by Cap Payment ID, which will re-extract all linked providers and departments in case any were unlinked since the previous extract. The table needs to be processed in the same way so those records will be properly removed from the destination warehouse.",Collector,19.7,Complex
+9,ATHENAONE,Charge Diagnosis,CHARGEDIAGNOSIS,Table for charge diagnosis data. Charge diagnosis records refer to representation of diagnosis codes on a charge transaction.,Collector,19.7,Complex
+10,ATHENAONE,Charge Extra Fields,CHARGEEXTRAFIELDS,"Table for charge extra fields data. ChargeExtraFields, contains additional charge-level input fields. 
+
+The Charge Extra Fields table also contains data stored in the following Service Type Add-On (STAO) modules:
+a.	Foreign System Identifier
+b.	Ambulance
+c.	Anesthesia",Collector,19.7,Complex
+11,ATHENAONE,Claim,CLAIM,"Table for claim data. Includes patient, provider, department and hospitalization information associated with each individual claim.",Collector,19.7,Complex
+12,ATHENAONE,Claim Audit,CLAIMAUDIT,Table for claim audit data. Claim audits are operations applied to individual claims.,Collector,19.7,Complex
+13,ATHENAONE,Claim Diagnosis,CLAIMDIAGNOSIS,Table for claim diagnosis data. Claim diagnoses are the diagnosis codes that appear on the claim. Includes claim-related and ICD-related information.,Collector,19.7,Complex
+14,ATHENAONE,Claim Extra Fields,CLAIMEXTRAFIELDS,"Table for claim extra fields data. Extra claim fields are fields that can be added to individual claims.
+
+a. Layout and Notes
+ClaimExtraFields, contains additional claim-level input fields. 
+
+The Claim Extra Fields table also contains data stored in the following Service Type Add-On (STAO) modules:
+- Foreign System Identifier
+- Ambulance
+- Anesthesia
+- Consultation",Collector,19.7,Complex
+15,ATHENAONE,Claim Note,CLAIMNOTE,Table for claim note data.,Collector,19.7,Complex
+16,ATHENAONE,Custom Admission Fields,CUSTOMADMISSIONFIELDS,Table for custom admission fields data. Custom admission fields can be created by the practice to store data related to hospital admissions.,Collector,19.7,Complex
+17,ATHENAONE,Custom Appointment Fields,CUSTOMAPPOINTMENTFIELDS,Table for custom appointment fields data. Custom appointment fields can be created by the practice to store appointment-related data.,Collector,19.7,Complex
+18,ATHENAONE,Custom Demographics,CUSTOMDEMOGRAPHICS,Table for custom demographics data. Custom demographic fields can be created by the practice to store patient-related demographic data.,Collector,19.7,Complex
+19,ATHENAONE,Custom Provider Fields,CUSTOMPROVIDERFIELDS,Table for custom provider fields data. Custom provider fields can be created by the practice to store provider-related data.,Collector,19.7,Complex
+20,ATHENAONE,Custom Transaction Code,CUSTOMTRANSACTIONCODE,Table enumerating all custom transaction codes.,Collector,19.7,Complex
+21,ATHENAONE,Department,DEPARTMENT,"Table for department data. Includes the department's CMS codes, as well as provider group and/or department group information.",Collector,19.7,Complex
+22,ATHENAONE,Deposit Batch,DEPOSITBATCH,Table for deposit batch data.,Collector,19.7,Complex
+23,ATHENAONE,Diagnosis Codes,DIAGNOSISCODE,Table for diagnosis code data.,Collector,19.7,Complex
+24,ATHENAONE,Driver's License Image,DRIVERSLICENSEIMAGE,Table for driver's license image data. Driver's licenses are stored as patient-related attachments within athenaNet.,Collector,19.7,Complex
+25,ATHENAONE,Employer,EMPLOYER,Table for employer data. Employers can be assigned to insurance policies or used as patient demographic information.,Collector,19.7,Complex
+26,ATHENAONE,ERA Detail,ERADETAIL,Table for Electronic Admittance Record (ERA) data. Includes claim and payment batch information.,Collector,19.7,Complex
+27,ATHENAONE,Fee Schedule,FEESCHEDULE,Table for fee schedule data. A fee schedule specifies a payer and a date range for which a particular fee is valid for a procedure.,Collector,19.7,Complex
+28,ATHENAONE,Fee Schedule Department,FEESCHEDULEDEPARTMENT,Table for fee schedule department data. Different fee schedules can be assigned for different departments within a practice.,Collector,19.7,Complex
+29,ATHENAONE,Fee Schedule Procedure,FEESCHEDULEPROCEDURE,Table for fee schedule procedure. A fee schedule specifies a payer and a date range for which a particular fee is valid for a procedure.,Collector,19.7,Complex
+30,ATHENAONE,GPCI Multiplier,GPCIMULTIPLIER,Table for GPCI modifier data. A Geographic Practice Cost Index (GPCI) is a locality-based based modifier for calculating RVU values.,Collector,19.7,Complex
+31,ATHENAONE,ICD Code All,ICDCODEALL,Table for ICD-10 and ICD-9 code data.,Collector,19.7,Complex
+32,ATHENAONE,Insurance Card Image,INSURANCECARDIMAGE,Table for insurance card image data. Insurance card images are stored as attachments within athenaNet. Includes patient insurance ID.,Collector,19.7,Complex
+33,ATHENAONE,Interface Map,INTERFACEMAP,Table for interface map data.,Collector,19.7,Complex
+34,ATHENAONE,Kick Reason,KICKREASON,Table for kick reason data. Kick reasons describe why a bill has not yet been paid or communicates the reason for the change in the status of an unpaid claim.,Collector,19.7,Complex
+35,ATHENAONE,LOINC,LOINC,"Table for LOINC data. Logical Observation Identifier Names and Codes are standard lab codes specifying the name of the component or analyte, its property, the type of sample, and the timing, scale, and method of the measurement.",Collector,19.7,Complex
+36,ATHENAONE,Medical Group,MEDICALGROUP,Table for medical group data. A medical group identifies a provider's pay-to address and tax ID information.,Collector,19.7,Complex
+37,ATHENAONE,Medical Group Number,MEDICALGROUPNUMBER,"Table that contains information about the DEA, SPI, NPI or Quest account medical group numbers along with its verification status.",Collector,19.7,Complex
+38,ATHENAONE,Medical Group Number Department,MEDICALGROUPNUMBERDEPARTMENT,Table that contains the department information where a medical group number is enrolled.,Collector,19.7,Complex
+39,ATHENAONE,Patient Demographics,PATIENT,"Table for patient demographic data. Includes patient race, language, and ethnicity, along with information about legal guardian and guarantor (if any) and information for privacy notice delivery and signatures/consents on file.",Collector,19.7,Complex
+40,ATHENAONE,Patient Account Note,PATIENTACCOUNTNOTE,Table for patient account note data. Patient account notes are used to track account actions and resolution.,Collector,19.7,Complex
+41,ATHENAONE,Patient Audit,PATIENTAUDIT,Table for patient audit data. Patient audits are operations applied to the patient table.,Collector,19.7,Complex
+42,ATHENAONE,Patient Insurance,PATIENTINSURANCE,"Table for patient insurance data. Includes the expiration, employer, and insurance package information associated with the patient insurance policy.",Collector,19.7,Complex
+43,ATHENAONE,Patient Insurance Audit,PATIENTINSURANCEAUDIT,Table for patient insurance audit data. Includes audit operations applied to patient's insurance information.,Collector,19.7,Complex
+44,ATHENAONE,Patient Payment,PATIENTPAYMENT,Table to track Patient Payment.,Collector,19.7,Complex
+45,ATHENAONE,Patient Privacy Note,PATIENTPRIVACYNOTE,"Table for patient privacy notes data. Includes notes pertaining to privacy protection, privacy complaints, patient disclosure, and other patient requests.",Collector,19.7,Complex
+46,ATHENAONE,Patient Race,PATIENTRACE,Table for patient race data.,Collector,19.7,Complex
+47,ATHENAONE,Patient Rounding List,PATIENTROUNDINGLIST,"Table for patient rounding list data. A patient rounding list is used to track patients in a hospital, nursing home, or other care facility on a given census date. Rounding lists are linked to claims if a patient had a claim created for a service performed between the patient's admit date and discharge date.",Collector,19.7,Complex
+48,ATHENAONE,Payers,PAYER,Table for payer data. Payer information is stored as insurance packages.,Collector,19.7,Complex
+49,ATHENAONE,Payment Batch,PAYMENTBATCH,Table for payment batch data. Payment batches are created for each EOB or one for each EOB that are posted together.,Collector,19.7,Complex
+50,ATHENAONE,Procedure Codes,PROCEDURECODE,Table for procedure code data.,Collector,19.7,Complex
+51,ATHENAONE,Provider,PROVIDER,Table for provider data.,Collector,19.7,Complex
+52,ATHENAONE,Provider Group,PROVIDERGROUP,"Table for provider group data. A provider group is a set of providers, often in the same specialty, who work out of the same location and share all financial information.",Collector,19.7,Complex
+53,ATHENAONE,Provider Number,PROVIDERNUMBER,"Table that contains information about the DEA, SPI, NPI or Quest account provider numbers along with its verification status.",Collector,19.7,Complex
+54,ATHENAONE,Provider Number Department,PROVIDERNUMBERDEPARTMENT,Table that contains the department information where a provider number is enrolled.,Collector,19.7,Complex
+55,ATHENAONE,Referral Auth Diagnosiscode,REFERRALAUTHDIAGNOSISCODE,Table for referral auth diagnosis code data. This refers to the diagnosis code on the referral or authorization.,Collector,19.7,Complex
+56,ATHENAONE,Referral Authorizations,REFERRALAUTHORIZATION,Table for referral and authorization data.,Collector,19.7,Complex
+57,ATHENAONE,Referral Auth Procedurecode,REFERRALAUTHPROCEDURECODE,Table for referral auth procedure code data. This refers to the procedure codes on the referral or authorization.,Collector,19.7,Complex
+58,ATHENAONE,Referring Provider,REFERRINGPROVIDER,Table for referral auth procedure code data. This refers to the procedure codes on the referral or authorization.,Collector,19.7,Complex
+59,ATHENAONE,Reporting Group Map,REPORTINGGROUPMAP,"Table for reporting group map data. A reporting group is a grouping of contexts and provider groups, used for reporting purposes. Can be cross-practice. The map serves as a list of the practice's custom and standard reporting groups.",Collector,19.7,Complex
+60,ATHENAONE,Risk Adjustment Factor,RISKADJUSTMENTFACTOR,"This table contains risk adjustment factor (RAF) scores. This data is surfaced on athenaNet in the patient facesheet, on the patient risk tab.",Collector,19.7,Complex
+61,ATHENAONE,Role Permission,ROLEPERMISSION,"Table for role permission data. athenaNet bundles many of these user permissions into 'roles,' such as Receptionist, Billing Manager, and Privacy Administrator, to make it easy for you to assign the appropriate permissions for each user in your practice.",Collector,19.7,Complex
+62,ATHENAONE,Service Location,SERVICELOCATION,Table for service location data. Service locations are facility locations with which ambulance companies frequently interact.,Collector,19.7,Complex
+63,ATHENAONE,Service Location Map,SERVICELOCATIONMAP,Table for service location map data. The service location maps origin-destination ambulance runs with an insurance package and the mileage of the run.,Collector,19.7,Complex
+64,ATHENAONE,Sliding Fee Plan,SLIDINGFEEPLAN,Table that contains information about sliding fee plans.,Collector,19.7,Complex
+65,ATHENAONE,Sliding Fee Program,SLIDINGFEEPROGRAM,Table listing all sliding fee programs,Collector,19.7,Complex
+66,ATHENAONE,Slot Action,SLOTACTION,"Table for slot action data.
+
+a. Layout and Notes:
+Template Description : Template descriptions are formatted as shown below '36000#OV30;39600#OV30;42300#OV15;46800#OV30;50400#OV30'
+Meaning:
+
+36000 => 10:00 (36000/3600), the start time
+OV30 => Appointment Type (should be joined with the short name of Appointment Type table). Here it is Office Visit for 30 Min.
+
+39600 => 11:00 (39600/3600)
+OV30 => Office Visit for 30 Min.
+
+42300 => 11.75 (42300/3600) = 11:45
+OV15 => Office Visit for 15 min.
+
+Recurrence Sub Type:
+DAILY: Once every 'Z' days or for all weekdays 
+WEEKLY : Once in every 'Z' weeks to any weekday
+MONTHLY : 'On the Nth of the month for every 'Z' months' or 'Nth week on any weekday for every 'Z' months'. 
+YEARLY : 'On the last business day before each holiday' or 'On the first business day after each holiday'.",Collector,19.7,Complex
+67,ATHENAONE,Staff Template,STAFFTEMPLATE,Table for staff template data.,Collector,19.7,Complex
+68,ATHENAONE,Timesheet Entry,TIMESHEETENTRY,Table for anesthesia timesheet entry data. Includes start/stop time as well as the associated anesthesia case identifier. ,Collector,19.7,Complex
+69,ATHENAONE,Timesheet Entry Transaction,TIMESHEETENTRYTRANSACTION,Table for data associating anesthesia timesheet entries with transactions.,Collector,19.7,Complex
+70,ATHENAONE,TOS Charge Patient Outstanding,TOSCHARGEPATIENTOUTSTANDING,Patient outstanding amounts on charges at the time of appointments,Collector,19.7,Complex
+71,ATHENAONE,Transaction Activity,TRANSACTION,"Table for transaction activity data. 
+
+a. Layout and Notes
+-  Ghosted Rows. Instead of void recreating, we create a ""ghost"" which is a voided image of what the charge used to look like. Then the post date of the original charge is moved up to the current month. These records aren't particularly important for the loading process if the above rules are used to process data files. What may be important though is not to assume that an ""old"" charge will have a ""Transaction ID"" value lower than a ""new"" charge. Ghosted rows also play an important role in reconciliation.
+
+b. System Close
+Athena's transaction system can only be reconciled against once the month end close process has completed, as only transactions from before the close date will be ghosted. 
+
+c. FAQs
+-  Transfers. Transfer Ins and Transfer Outs are simply moves from one responsible party to the next. They exist because the system was designed such that a closed charge will always balance to zero.
+-  Amounts. Non-voided charges and ""transfer ins"" will have positive amounts, and non-voided payments, adjustments and ""transfer outs"" will be negative. Negative amounts debit accounts receivable and positive amounts credit A/R.
+-  Foreign Keys in Multiple Tablespaces. If your practice is spread across multiple tablespaces, the foreign keys won't be straight forward to join, as ID's for departments or providers will no longer be globally unique. They will be unique per tablespace, though, and can be found by joining both on the ID and on the CONTEXTID.
+
+-  Overpayments. A charge will be overpaid when the payments and adjustments on the charge are greater than the charge itself. This can happen for any number of reasons and the claim will remain open until the charge is balanced.
+-  Refunds. Refunds are payments with ""REFUND"" as the reason. Refunds will only be initiated by the practice.
+-  Takebacks. Takebacks are a type of refund, performed by the insurance company when they discover an error and send a negative payment, or takeback, on an EOB. These will usually appear as non-voided payments with positive amounts in the transaction table that are not identified with a REFUND reason.
+-  Recovery. Recoveries occur after a charge has been sent off to collections and money is then received. When a payment is posted, a portion of the COLLECT charge in the amount of the payment needs to be undone. This is accomplished with an adjustment with a reason of RECOVERY.
+-  Current Payer. A claim will be setup with one or many insurances followed by the default self-pay insurance. Charges on that claim start off their responsibility with the primary payer and are indicated by the transfer type of '1'. Once primary responsibility has been fully resolved with the creation of subsequent PAYMENT, ADJUSTMENT or TRANSFEROUT transactions that equal the CHARGE amount, the responsibility is closed out. The transferred amount falls to the secondary insurance, transfer type '2', and then to the patient, transfer type 'p', as TRANSFERIN charges. The outstanding balances to a payer on a claim can be calculated by looking at all the transactions by transfer type for that claim. When the transactions sum to zero, as charges are positive amounts and payments, adjustments and transfers are negative, the associated claim status will most likely be 'CLOSED'.",Collector,19.7,Complex
+72,ATHENAONE,Transaction Billing Batch,TRANSACTIONBILLINGBATCH,Table that provides transaction details associated with a billing batch.,Collector,19.7,Complex
+73,ATHENAONE,Unapplied Activity,UNAPPLIED,Table that provides transaction details associated with a billing batch.,Collector,19.7,Complex
+74,ATHENAONE,Unpostable Activity,UNPOSTABLE,Table for unpostable activity data. An unpostable record represents funds/remittance/correspondence that athenahealth cannot post to a patient or a charge.,Collector,19.7,Complex
+75,ATHENAONE,User Department,USERDEPARTMENT,Table that provides information about the department a user has access to.,Collector,19.7,Complex
+76,ATHENAONE,User Identity Mapping,USERIDENTITYMAPPING,Table that provides the information about the user identity mapping.,Collector,19.7,Complex
+77,ATHENAONE,User Profile,USERPROFILE,Table for user profile data.,Collector,19.7,Complex
+78,ATHENAONE,User Provider Access,USERPROVIDERACCESS,Table that contains information about the provider a user has access to.,Collector,19.7,Complex
+79,ATHENAONE,Work List Record,WORKLISTRECORD,"Table for work list record data. This refers to records for work that is the responsibility of the practice (rather than athenahealth).
+
+a. Layout and Notes
+Sysdate - ""Work List Record"". ""Status Date"" gives Days in status
+- To get the current Work List fields, use the following conditions:
+   - Deleted Datetime is null
+   - Has Stop Event YN = 'N'",Collector,19.7,Complex
+80,ATHENAONE,Patient Allergy,ALLERGY,"Table for patient allergy data. Includes current and historical allergies. The allergies section can be found in the patient chart.
+Please note that after 17.7 (7/22/17), the Patient ID will no longer populate. Please shift to rely on the Chart ID which remains constant with Enterprise IDs. ",Clinicals,19.7,Complex
+81,ATHENAONE,CAIR Consent,CAIRCONSENT,"Table contains information about a common interface for clients in California enrolled in MU.
+
+a. Layout and Notes
+If your immunization registry requires patient consent (an opt-in requirement), athenaClinicals will send immunization information only for those patients for whom you have selected Yes for CIIS Consent (CAIR for California).
+If your immunization registry does not require consent (an opt-out requirement), athenaClinicals will send immunization information for all patients, except for those for whom you have selected No for CIIS Consent. In this situation, no selection is the same as a Yes selection.",Clinicals,19.7,Complex
+82,ATHENAONE,Chart,CHART,"Table for chart data. The patient's chart holds both historical and current information, and is updated with every encounter.",Clinicals,19.7,Complex
+83,ATHENAONE,Chart Alert,CHARTALERT,Table for chart alert data. Chart alerts help your practice communicate important information about specific patients internally across several patient-focused workflows in athenaNet.,Clinicals,19.7,Complex
+84,ATHENAONE,Chart Episode,CHARTEPISODE,Table that provides information about the chart episodes.,Clinicals,19.7,Complex
+85,ATHENAONE,Chart Episode Encounter,CHARTEPISODEENCOUNTER,Table that provides information about the clinical encounter related to chart episodes.,Clinicals,19.7,Complex
+86,ATHENAONE,Chart Questionnaire,CHARTQUESTIONNAIRE,Table that represents all of the questionnaires for a specific chart.,Clinicals,19.7,Complex
+87,ATHENAONE,Chart Questionnaire Document,CHARTQUESTIONNAIREDOCUMENT,Table providing a many-to-many mapping between chartquestionnaire and document.,Clinicals,19.7,Complex
+88,ATHENAONE,Chart Sharing Group,CHARTSHARINGGROUP,Table for chart sharing group data. Chart sharing groups allow your athenaEnterprise practice to share clinical charts across provider groups whose financial data are separate.,Clinicals,19.7,Complex
+89,ATHENAONE,Clinical Affiliate,CLINICALAFFILIATE,Table for clinical affiliate data. Clinical affiliates are non-providers involved with the care of the patient.,Clinicals,19.7,Complex
+90,ATHENAONE,Clinical DME Document,CLINICALDME,Table for clinical DME document data. Clinical DME documents refer to DME document orders.,Clinicals,19.7,Complex
+91,ATHENAONE,Clinical Encounter,CLINICALENCOUNTER,Table for clinical encounter data.,Clinicals,19.7,Complex
+92,ATHENAONE,Clinical Encounter Diagnosis,CLINICALENCOUNTERDIAGNOSIS,Table for clinical encounter diagnosis data. Clinical encounter diagnoses hold the diagnoses from an encounter.,Clinicals,19.7,Complex
+93,ATHENAONE,Clinical Encounter Diagnosis ICD10,CLINICALENCOUNTERDXICD10,Table for clinical encounter ICD-10 diagnosis data. This maps clinical encounter diagnoses and ICD-10 codes; a SNOMED clinicalencounterdiagnosis may have multiple ICD-10 billing codes attached.,Clinicals,19.7,Complex
+94,ATHENAONE,Clinical Encounter Diagnosis ICD9,CLINICALENCOUNTERDXICD9,Table for clinical encounter ICD-9 diagnosis data. This maps clinical encounter diagnoses and ICD-9 codes; a SNOMED clinicalencounterdiagnosis may have multiple ICD-9 billing codes attached.,Clinicals,19.7,Complex
+95,ATHENAONE,Clinical Letter,CLINICALLETTER,Table for clinical letter data. Clinical letters are templated documents related to the patient encounter.,Clinicals,19.7,Complex
+96,ATHENAONE,Clinical Order Question,CLINICALORDERQUESTION,Table enumerating all of the clinical order questions and values defined for an order at the time the order was created.,Clinicals,19.7,Complex
+97,ATHENAONE,Clinical Provider,CLINICALPROVIDER,"Table for clinical provider data. Clinical providers refer to entities that provide clinical services, and can be the recipients of requests, orders, referrals, patient charts, letters, and other clinical forms.",Clinicals,19.7,Complex
+98,ATHENAONE,Clinical Result,CLINICALRESULT,Table for clinical result data.,Clinicals,19.7,Complex
+99,ATHENAONE,Clinical Result Observation,CLINICALRESULTOBSERVATION,Table for clinical result observation data.,Clinicals,19.7,Complex
+100,ATHENAONE,Clinical Service,CLINICALSERVICE,Table that provides information about the clinical service.,Clinicals,19.7,Complex
+101,ATHENAONE,Clinical Service Diagnosis,CLINICALSERVICEDIAGNOSIS,Table that provides information about the clinical service diagnosis code.,Clinicals,19.7,Complex
+102,ATHENAONE,Clinical Service Modifier,CLINICALSERVICEMODIFIER,Table that provides information about the clinical service modifiers.,Clinicals,19.7,Complex
+103,ATHENAONE,Clinical Service Procedure Code,CLINICALSERVICEPROCEDURECODE,Table that provides information about the clinical service procedure code.,Clinicals,19.7,Complex
+104,ATHENAONE,Clinical Document,DOCUMENT,"Table for clinical document data.
+
+a. Layout and Notes
+The document table contains the documents of the following list of document classes. While most of the included document types are exclusive to athenaClinicals, athenaCommunicator patient case data could also appear in this table:
+- ADMIN
+- CLINICALDOCUMENT
+- ENCOUNTERDOCUMENT
+- ORDER
+- PATIENTCASE
+- PHYSICIANAUTH
+- UNKNOWN
+- PATIENTINFO
+- CHARTABSTRACTION
+- MEDICALRECORD
+- COVERSHEET
+- PHONEMESSAGE
+- ACOG
+- HTML
+- PATIENTRECORD
+- INTERPRETATION
+- RTO
+
+In most cases, the Perform Date is indicated in the FUTURESUBMITDATETIME field. If this field remains null, the Perform Date can be obtained from the fields below in the following order:
+- Encounter date of the corresponding clinicalencounter
+- Appointment date of the corresponding clinicalencounter
+- Appointment date of the appointment tickler for that clinicalencounter",Clinicals,19.7,Complex
+105,ATHENAONE,Clinical Document Action,DOCUMENTACTION,"Table for document action data. Defines every action at any given step in the document workflow.
+
+a. Layout and Notes
+Please note that where Document Action.Action = DELETED that the document has been deleted, whereas when Document Action.Deleted By/Datetime are populated, that the Action itself was deleted.",Clinicals,19.7,Complex
+106,ATHENAONE,Appointment Request Document,DOCUMENTAPPOINTMENTREQUEST,Table for appointment request data. Refers to APPOINTMENTREQUEST-type documents.,Clinicals,19.7,Complex
+107,ATHENAONE,Document Category,DOCUMENTCATEGORY,Table for document category data.,Clinicals,19.7,Complex
+108,ATHENAONE,Document Class,DOCUMENTCLASS,"Table for document class data. Documents can be classified as ORDER, RESULT, OTHERCLINICAL, ADMIN, ACOG, UNKNOWN, and athenahealth staff assign a document to each clinical inbox item.",Clinicals,19.7,Complex
+109,ATHENAONE,Document Diagnosis,DOCUMENTDIAGNOSIS,"Table for document diagnosis data. Includes clinical encounter information, as well as diagnosis and SNOMED codes.
+
+a. Layout and Notes
+- Please reach out to EDWSupport@athenahealth.com if you need any further assistance on retrieving DESCRIPTION of the ORDER document",Clinicals,19.7,Complex
+110,ATHENAONE,Document Diagnosis ICD10,DOCUMENTDIAGNOSISICD10,Stores ICD-10 codes associated with orders.,Clinicals,19.7,Complex
+111,ATHENAONE,Document Diagnosis ICD9,DOCUMENTDIAGNOSISICD9,Stores ICD-9 codes associated with orders.,Clinicals,19.7,Complex
+112,ATHENAONE,Document Sub Class,DOCUMENTSUBCLASS,Table for document sub class data. Used for subclassing of document classes.,Clinicals,19.7,Complex
+113,ATHENAONE,Episode OB,EPISODEOB,"Table for OB episode data. athenaNet refers to the clinical and billing time period of a patient's pregnancy as an OB episode; the OB episode is a mechanism to track OB enrollments and information about clinical outcomes. Enrollment, EDD, and delivery reports organize information captured in the OB episode.",Clinicals,19.7,Complex
+114,ATHENAONE,Patient Flow Sheet,FLOWSHEET,Table for flowsheet data. Flowsheets provide a centralized place in the patient's chart to track a variety of relevant information pertaining to a particular problem over time.,Clinicals,19.7,Complex
+115,ATHENAONE,Gestation,GESTATION,Table for gestation data. athenaNet uses this table to track patient pregnancy and baby data between conception and birth.,Clinicals,19.7,Complex
+116,ATHENAONE,Gestation Race,GESTATIONRACE,Table for the gestation racial data. The gestation race specifies the racial affiliation of the patient and baby.,Clinicals,19.7,Complex
+117,ATHENAONE,Medication,MEDICATION,"The table for medication data. Includes NDC number, and FDB information.",Clinicals,19.7,Complex
+118,ATHENAONE,Order Delegation Mapping,ORDERDELEGATIONMAPPING,Table to track order delegation across providers.,Clinicals,19.7,Complex
+119,ATHENAONE,Patient Allergy Reaction,PATIENTALLERGYREACTION,Table returning patient allergic reaction data. Includes current and historical reactions.,Clinicals,19.7,Complex
+120,ATHENAONE,Patient Assertion,PATIENTASSERTION,"Table for patient assertion data. This assertion data is used to satisfy quality measures, which is entered directly onto a patient's QM Tab in athenaClinicals. Measure satisfaction information can be found in the qmresult table.
+Please refer to the QMResult subspace within our DWF Resource Center.",Clinicals,19.7,Complex
+121,ATHENAONE,Patient Clinical Problem,PATIENTCLINICALPROBLEM,Table for patient clinical problem data. The patient clinical problem refers to patient answers to Prenatal and Birth history questions.,Clinicals,19.7,Complex
+122,ATHENAONE,Patient Family History,PATIENTFAMILYHISTORY,Table for patient's family history data. This refers to the family history problem data stored in the patient chart.,Clinicals,19.7,Complex
+123,ATHENAONE,Patient Medication,PATIENTMEDICATION,"Table for patient medication data. This can include the all medications (current and historical) that the patient takes, including medications prescribed by other providers or taken over the counter.",Clinicals,19.7,Complex
+124,ATHENAONE,Patient OBGYN History,PATIENTOBGYNHISTORY,"Table for patient's OBGYN history data.
+The GYN History section (also called the OBGYN History section) consists of a list of questions and answers about a woman's OBGYN history, a note field for each of those questions, and a section-level note.",Clinicals,19.7,Complex
+125,ATHENAONE,Patient Past Medical History,PATIENTPASTMEDICALHISTORY,Table for patient past medical history data. This stores the patient's answers to the administered medical history questions that appear in the Health History section of the patient chart.,Clinicals,19.7,Complex
+126,ATHENAONE,Patient Problem,PATIENTPROBLEM,"Table for patient problem data. Includes patient's active and historical medical problems, stored in the Problem List in the patient chart.
+
+a.  Layout and Notes
+Please note that once your practice has converted to SNOMED, the Patient ID will no longer populate. Please shift to rely on the Chart ID which remains constant with Enterprise IDs.",Clinicals,19.7,Complex
+127,ATHENAONE,Patient Provider,PATIENTPROVIDER,Table for patient provider data. This includes the patient's clinical providers and the patient's non-provider care team affiliates. This table is pulling data from the Patient Care Team.,Clinicals,19.7,Complex
+128,ATHENAONE,Patient Simple History,PATIENTSIMPLEHISTORY,"Table for patient simple history data. Patient simple history records are free- texts fields, found in the Health History tab of the patient's chart.",Clinicals,19.7,Complex
+129,ATHENAONE,Patient Social History,PATIENTSOCIALHISTORY,"Table for patient social history data. A patient's social history information is found in the Health History tab of the patient's chart. Historical data is present in this table. New set of social history tables is the best source for latest info (SOCIALHXFORMRESPONSE, SOCIALHXFORMQUESTION, SOCIALHXFORMRESPONSEANSWER). Please check those tables for relevant data",Clinicals,19.7,Complex
+130,ATHENAONE,Patient Surgical History,PATIENTSURGERY,Table for patient surgical history data. A patient's surgical history information is found in the Health History tab of the patient's chart.,Clinicals,19.7,Complex
+131,ATHENAONE,Patient Vaccine,PATIENTVACCINE,Table for patient vaccine data. Patient vaccine administrations are found in the Health History tab of the patient chart.,Clinicals,19.7,Complex
+132,ATHENAONE,Patient QM Result,QMRESULT,"Table for QM result data. This includes the results for every QM Guideline and P4P in a given practice.
+- Pulls results for every QM Guideline Measure
+- As of v3.12, also pulls Non Guidelines-PQRS.
+- Includes P4P measure exclusion reasons but does not pull results from episodic measures
+- The data used to generate these measures is available in other tables such as clinicalresultobservation, document, patient social history, family history etc.
+
+a. Layout and Notes
+The table for quality data. The quality data in this table aligns with what can be found in the Quality Management Report (QMR).
+- P4P Program is the name of the quality program which tracks specific quality measures.
+- P4P Measure is the name of the quality measure (i.e. Breast Cancer Screening, Tobacco Use Inquiry, etc.)
+- Result Status is the patient's satisfaction information (SATISFIED, NOTSATISFIED, or EXCLUDED) for each measure
+- Satisfied Date is populated when the Result Status is SATISFIED, and represents the date of the satisfaction criteria for the P4P Measure.
+
+Q: Why don't I see satisfaction information for a given quality program?
+A: The qmresult table includes a specific list of quality programs into which a provider must be enrolled in order to track quality data.
+- The qmresult table includes only the programs specified in the list above. 
+- To pull into the qmresult table, a provider must be enrolled into the program in athenaClinicals. To verify providers’ enrollments, please use the Quality Program and Clinical Guideline Enrollment Report in Report Library.
+
+Q: What happens to a provider's data if they leave the practice or are unenrolled from a quality program? 
+A: When providers leave a practice, Create Encounters is typically turned off. When this happens, a provider is automatically unenrolled from a quality program. Additionally, a provider can still be at the practice but may be unenrolled from a quality program. When a provider is unenrolled from a quality program, they are no longer tracking a quality programs' data, so they will no longer appear in this table.
+
+Q: What if a provider just recently enrolled into a quality program?
+A: When providers are enrolled into quality programs, a large amount of patient data must run through the Quality Management Engine to determine performance on quality measures. Due to the volume of information, this process takes approximately 3-5 days. You can expect that provider data will appear in the qmresult table after that time. Once a provider's quality data processes, you will see complete details in the qmresult table.",Clinicals,19.7,Complex
+133,ATHENAONE,SNOMED,SNOMED,Table for SNOMED code data.,Clinicals,19.7,Complex
+134,ATHENAONE,Vital Sign,VITALSIGN,"Table for vital signs data. This includes the vital signs information gathered in the clinical encounter, stored in the Vaccines section of the patient chart.",Clinicals,19.7,Complex
+135,ATHENAONE,Custom Department Fields,CUSTOMDEPARTMENTFIELDS,Table for custom department fields data. Custom department fields can be created by the practice to store department-related data.,Collector,20.3,Complex
+136,ATHENAONE,Custom Claim Fields,CUSTOMCLAIMFIELDS,Table for custom claim fields data.  Custom claim fields can be created by the practice to store claim-related data. ,Collector,20.3,Complex
+137,ATHENAONE,Custom RVU Procedure Values,CUSTOMRVUPROCEDUREVALUES,Table for Custom Procedure values for RVU Reporting. Includes the procedure code and custom values by RVU type as definied in the CUstom RVU Procedure Values Mapping Table,Collector,20.3,Complex
+138,ATHENAONE,Custom RVU Modifier Adjustments,CUSTOMRVUMODIFIERADJUSTMENTS,Table for Custom Modifier Values for RVU Reporting.   Includes the modifier and custom adjustment as defined in the Custom RVU Modifier Adjustments Mapping Table,Collector,20.3,Complex
+139,ATHENAONE,Appointment Audit,APPOINTMENTAUDIT,Stores changes made to appointment records,Collector,20.4,Simple
+140,ATHENAONE,Charge Note,CHARGENOTE,Stores changes made to charges on claims,Collector,20.4,Simple
+141,ATHENAONE,Denial Claim Note,DENIALCLAIMNOTE,This table stores aggregated information on scrub events per month at the claim level for events which happen when the practice attempts to submit a claim. The fields have a lot of preprocessing associated with them.,Collector,20.4,Simple
+142,ATHENAONE,Eligibility Track,ELIGIBILITYTRACK,This table list all eligibility responses sent and received for all insurances that were selected on the patients quickview,Collector,20.4,Simple
+143,ATHENAONE,Reporting Group Department,REPORTINGGROUPDEPARTMENT,Table that stores the mapping between departments and reporting groups,Collector,20.4,Simple
+144,ATHENAONE,Reporting Group Provider Group,REPORTINGGROUPPROVIDERGROUP,Table that stores that mapping between provider groups and reporting groups,Collector,20.4,Simple
+145,ATHENAONE,Reporting Group Provider,REPORTINGGROUPPROVIDER,Table that stores the mapping between providers and reporting groups,Collector,20.4,Simple
+146,ATHENAONE,Reporting Group,REPORTINGGROUP,"A reporting group is a grouping of contexts and provider groups, used for reporting purposes. Can be cross-practice.",Collector,20.4,Simple
+147,ATHENAONE,Communicator Brand,COMMUNICATORBRAND,"This table contains all of the brands, which will all have their own portal page. The providergroup table contains a foreign key to this table to express which brand each provider group belongs to.",Patient Experience,20.4,Simple
+148,ATHENAONE,Patient Contact Preference,PATIENTCONTACTPREFERENCE,"This table links a patient to a contact method with an ordering preference. Since there are only a limited number of contact methods, any one patient should never have more than a handful of method + reason. This table is used for Communicator clients instead of the very basic client.contactpreference.",Patient Experience,20.5,Simple
+149,ATHENAONE,Clinical Encounter Data,CLINICALENCOUNTERDATA,,Clinicals,20.5,Simple
+150,ATHENAONE,Portal User Permission,PORTALUSERPERMISSION,This table maps a permission access to a portal user mapping.,Patient Experience,20.5,Simple
+151,ATHENAONE,Portal User Mapping,PORTALUSERMAPPING,This table maps third party users to patients in the portal.,Patient Experience,20.5,Simple
+152,ATHENAONE,Portal Thirdparty User,PORTALTHIRDPARTYUSER,This table stores login and demographic info for guarantor and family members of portal patients that have been granted access.,Patient Experience,20.5,Simple
+153,ATHENAONE,SNOMEDICD10MAP,SNOMEDICD10MAP,,Collector,20.5,Simple
+154,ATHENAONE,Report Map Key,REPORTMAPKEY,Each record in this table represents a single custom report mapping table.,General,20.5,Simple
+155,ATHENAONE,Report Map Field,REPORTMAPFIELD,Each record in this table represents a single column field for a specific custom report mapping table.,General,20.5,Simple
+156,ATHENAONE,Report Map Data,REPORTMAPDATA,Each record in this table represents a single data point value for a specific field (column) for a specific custom report mapping table. The data points are grouped by the groupid into a row of data for all fields (columns) of the custom report mapping table.,General,20.5,Simple
+157,ATHENAONE,Payment Plan,PAYMENTPLAN,Each record in this table represents a single patient payment plan,Collector,20.6,Simple
+158,ATHENAONE,Payment Plan Type,PAYMENTPLANTYPE,This table is used to identify the various types of payment plan,Collector,20.6,Simple
+159,ATHENAONE,Clinical Template,CLINICALTEMPLATE,This table contains structured clinical template data points used during a clinical encounter,Clinicals,20.6,Complex
+160,ATHENAONE,Office Order Type Grid Value,OFFICEORDERTYPEGRIDVALUE,This table holds details about the analytes used in office order types,Clinicals,20.6,Simple
+161,FINANCIALS,Activity Fact,ACTIVITYFACT,"ActivityFact,  an analytical dataset created for analyzing transaction activities (revenue cycle management data)",Datamart,20.6,Governed / Analytical
+162,ATHENAONE,ACEAPPOINTMENT,ACEAPPOINTMENT,Stores extra appointment data applicable to appointments scheduled through aCE,Collector,20.7,Simple
+163,ATHENAONE,APPOINTMENTCANCELREASON,APPOINTMENTCANCELREASON,,Collector,20.7,Simple
+164,ATHENAONE,BILLINGBATCH,BILLINGBATCH,,Collector,20.7,Simple
+165,ATHENAONE,CLIENTRECORDNUMBERAUDR,CLIENTRECORDNUMBERAUDR,,Collector,20.7,Simple
+166,ATHENAONE,CORPORATEINVOICE,CORPORATEINVOICE,Table to store corporate billing invoice information,Collector,20.7,Simple
+167,ATHENAONE,DEPARTMENTGROUP,DEPARTMENTGROUP,,Collector,20.7,Simple
+168,ATHENAONE,LOCALPATIENTAPPOINTMENTLABEL,LOCALPATIENTAPPOINTMENTLABEL,Practice-specific patient viewable appointment labels.,Collector,20.7,Simple
+169,ATHENAONE,P4PPATIENTRAFSCORELOG,P4PPATIENTRAFSCORELOG,Tracks risk and gap scores produced by user interaction with the hcc/raf features,Collector,20.7,Simple
+170,ATHENAONE,PATIENTCOMMUNICATORDETAIL,PATIENTCOMMUNICATORDETAIL,This table extends CLIENT for additional details about 1 patient and Communicator,Collector,20.7,Simple
+171,ATHENAONE,PATIENTSTATEMENT,PATIENTSTATEMENT,,Collector,20.7,Simple
+172,ATHENAONE,PREPAYMENT,PREPAYMENT,,Collector,20.7,Simple
+173,ATHENAONE,PREPAYMENTCLAIMS,PREPAYMENTCLAIMS,,Collector,20.7,Simple
+174,ATHENAONE,PrePaymentType,PREPAYMENTTYPE,,Collector,20.7,Simple
+175,ATHENAONE,RECORDNUMBERSELECT,RECORDNUMBERSELECT,,Collector,20.7,Simple
+176,ATHENAONE,SELFCHECKINSTATUS,SELFCHECKINSTATUS,,Collector,20.7,Simple
+177,ATHENAONE,SELFCHECKINWORKFLOW,SELFCHECKINWORKFLOW,This table keeps track of the progress that has been made for the self check in workflow for a patient-appointment.,Collector,20.7,Simple
+178,SCHEDULING,APPOINTMENT,APPOINTMENT,"The Appointment Dataset table was derived from the principal appointment table in the athenaNet schema.  This table has been created to add more detail and clarity, allowing for easier analysis.  
+
+Key areas of analysis include any inquires regarding appointment level data:
+What day was the booking? What day is the appointment set for? How many appointments per provider/department/specialty? What types of booking channels are being utilized across my org?",Datamart,20.7,Governed / Analytical
+179,ATHENAONE,CLAIMSTATUS,CLAIMSTATUS,,Collector,20.8,Simple
+180,ATHENAONE,EPAYMENT,EPAYMENT,"There is one row in this table for every transaction we submit to the payment gateway. Note: the gateway may never actually see the transaction, due to network errors or other issues. We don't guarantee that the gateway has seen every transaction in this table, but we do guarantee that everything the payment gateway has seen exists in this table. We know that the gateway has seen a transaction if gatewayresponsecode is non-null.",Collector,20.8,Simple
+181,ATHENAONE,SQLREPORT,SQLREPORT,Lists the reports published in the Report Library,General,20.8,Simple
+182,ATHENAONE,SQLREPORTAUDR,SQLREPORTAUDR,Audit table for changes to reports in the Report Library,General,20.8,Simple
+183,ATHENAONE,TABLESPACEINFO,TABLESPACEINFO,Holds settings for a tablespace,General,20.8,Simple
+184,ATHENAONE,TABLESPACEINFOAUDIT,TABLESPACEINFOAUDIT,Audit table for changes to tablespace settings,General,20.8,Simple
+185,ATHENAONE,UNPOSTABLEAUDIT,UNPOSTABLEAUDIT,Audit table for changes to the UNPOSTABLE table,Collector,20.8,Simple
+186,ATHENAONE,LOCALDIAGNOSISNAME,LOCALDIAGNOSISNAME,To store the procedure codes having practice-level friendly names and search names for diagnoses.,Collector,20.8,Simple
+187,ATHENAONE,TRANSACTIONEXTENSION,TRANSACTIONEXTENSION,An extension table for details about transactions,Collector,20.8,Simple
+188,ATHENAONE,ZIPCODEGPCILOCATIONMAPPING,ZIPCODEGPCILOCATIONMAPPING,Contains historical changes made to GPCILOCATIONID for ZIP's in ZIPCODE table,Collector,20.8,Simple
+189,ATHENAONE,CLINICALPATIENTDATA,CLINICALPATIENTDATA,,Clinicals,20.8,Simple
+190,ATHENAONE,P4PHCCDXSUGGESTION,P4PHCCDXSUGGESTION,Stores denormalized diagnosis recommendations for the HCC diagnosis recommendation functionality,Clinicals,20.8,Simple
+191,ATHENAONE,P4PHCCDXSUGGESTIONDISMISSAL,P4PHCCDXSUGGESTIONDISMISSAL,Stores user dismissals of suggestions,Clinicals,20.8,Simple
+192,ATHENAONE,CLINICALORDERTYPE,CLINICALORDERTYPE,Global version of localclinicalordertype,Clinicals,20.8,Simple
+193,ATHENAONE,PATIENTSURGICALHISTORY,PATIENTSURGICALHISTORY,This table stores the patient's surgical history responses.,Clinicals,20.8,Simple
+194,ATHENAONE,PROCEDURECODEREFERENCE,PROCEDURECODEREFERENCE,,General,20.8,Simple
+195,ATHENAONE,SURGICALHISTORYPROCEDURE,SURGICALHISTORYPROCEDURE,,Clinicals,20.8,Simple
+196,ATHENAONE,SURGICALHXPROCEDURESNOMED,SURGICALHXPROCEDURESNOMED,Stores mappings between Surgical History questions and SNOMED codes.,Clinicals,20.8,Simple
+197,ATHENAONE,RISKCONTRACT,RISKCONTRACT,Stores information of poulation health risk contracts,Clinicals,20.8,Simple
+198,ATHENAONE,CONTEXT,CONTEXT,,General,20.8,Simple
+199,ATHENAONE,CLAIMALARM,CLAIMALARM,,Collector,20.9,Simple
+200,ATHENAONE,INSURANCEPACKAGE,INSURANCEPACKAGE,"INSURANCEPACAKGE.ID has an odd value distribution, and without a histogram it can cause Oracle to make some bad decisions. Specifically, the small number of large negative values convinces Oracle that most of the values are <0",Collector,20.9,Simple
+201,ATHENAONE,HCCHCCINTERACTION,HCCHCCINTERACTION,Indicates that there is an additional RAF score when a patient has members of both of two groups of HCCs,Clinicals,20.9,Simple
+202,ATHENAONE,HCCHIERARCHYEXCLUSION,HCCHIERARCHYEXCLUSION,Indicates that one hcc excludes another due to HCC hierarchy rules,Clinicals,20.9,Simple
+203,ATHENAONE,HCCICDCODEALL,HCCICDCODEALL,Indicates which icd codes belong to HCCs,Clinicals,20.9,Simple
+204,ATHENAONE,HCCINTERACTIONGROUPMEMBER,HCCINTERACTIONGROUPMEMBER,Indicates that an HCC is part of a group of HCCs for interaction purposes,Clinicals,20.9,Simple
+205,ATHENAONE,P4PHCCBUDDYCODESETMEMBER,P4PHCCBUDDYCODESETMEMBER,Indicates which ICD codes can be used as accompanying ICD codes to satisfy coding guidelines,Clinicals,20.9,Simple
+206,ATHENAONE,P4PHCCDXSUGGESTIONDISMISSALAUDIT,P4PHCCDXSUGGESTIONDISMISSALAUDIT,,Clinicals,20.9,Simple
+207,ATHENAONE,P4PHCCDXSUGGESTIONSOURCE,P4PHCCDXSUGGESTIONSOURCE,Stores the sources used to generate a HCC diagnosis recommendation,Clinicals,20.9,Simple
+208,ATHENAONE,P4PHCCDXSUGGESTIONSOURCEAUDIT,P4PHCCDXSUGGESTIONSOURCEAUDIT,,Clinicals,20.9,Simple
+209,ATHENAONE,P4PHCCICDBUDDYCODESET,P4PHCCICDBUDDYCODESET,Indicates which ICD codes belonging to HCCs require accompanying ICD codes to satisfy coding guidelines,Clinicals,20.9,Simple
+210,ATHENAONE,PATIENTRISKCONTRACT,PATIENTRISKCONTRACT,Stores the risk contract info for a given patient.,Clinicals,20.9,Simple
+211,ATHENAONE,REJECTIONREASON,REJECTIONREASON,,Collector,20.9,Simple
+212,SCHEDULING,NEWPATIENT_APPOINTMENT,NEWPATIENT_APPOINTMENT,"The New Patient  Appointment and New Patient Scheduling datasets were created to provide insight into whether the patient is considered new to the practice at a variety of levels including context, provider group, specialty, department, and provider.  New Patient is based on whether there are appointments in the last 3 years for the patient.
+
+Use the Appointment level version when you are interested whether the patient was new at the time of appointment and Schedule level version when you are interested whether the patient was new at the time of booking.",Datamart,20.9,Governed / Analytical
+213,SCHEDULING,NEWPATIENT_SCHEDULE,NEWPATIENT_SCHEDULE,"The New Patient  Appointment and New Patient Scheduling datasets were created to provide insight into whether the patient is considered new to the practice at a variety of levels including context, provider group, specialty, department, and provider.  New Patient is based on whether there are appointments in the last 3 years for the patient.
+
+Use the Appointment level version when you are interested whether the patient was new at the time of appointment and Schedule level version when you are interested whether the patient was new at the time of booking.",Datamart,20.9,Governed / Analytical
+214,ATHENAONE,ORDERNOTDONEREASON,ORDERNOTDONEREASON,Determines what are valid reasons (codified by snomed) for an order of a certain clinical order type group not to be done.,Clinicals,20.10,Simple
+215,ATHENAONE,ORDERREQUEST,ORDERREQUEST,"Another extender table for documents, for all types of order requests",Clinicals,20.10,Simple
+216,ATHENAONE,EPAYMENTCARD,EPAYMENTCARD,,Collector,20.10,Simple
+217,ATHENAONE,EPAYMENTCONTRACT,EPAYMENTCONTRACT,"At check-out, the client is offered the chance to save their credit card on file and have it billed automatically for their responsible balance once the EOB arrives. Most columns are nullable because we might create a contract as a ""shell"" in advance of signing it, or indeed setting any parameters.",Collector,20.10,Simple
+218,ATHENAONE,TERMINAL,TERMINAL,"Terminal IDs are used to process electronic payments. They represent physical points where payments are collected, and are generated internally. To a degree they are a useless intermediary: they solely tell the processor which merchant ID to use, even though we already know which merchant ID to use. Terminal IDs must be unique across our entire install. Since we generate these internally, an easy way to guarantee uniqueness is to make this a root level table.",Collector,20.10,Simple
+219,ATHENAONE,CLINICALORDERSET,CLINICALORDERSET,,Clinicals,20.10,Simple
+220,ATHENAONE,CLINICALORDERSETELEMENT,CLINICALORDERSETELEMENT,,Clinicals,20.10,Simple
+221,ATHENAONE,CLINICALORDERSETSPECIALTY,CLINICALORDERSETSPECIALTY,,Clinicals,20.10,Simple
+222,ATHENAONE,ENROLLMENTPERIOD,ENROLLMENTPERIOD,,General,20.10,Simple
+223,ATHENAONE,DEPARTMENTNUMBER,DEPARTMENTNUMBER,,General,20.10,Simple
+224,ATHENAONE,PROVIDERNUMBERCATEGORY,PROVIDERNUMBERCATEGORY,,General,20.10,Simple
+225,ATHENAONE,MEDICALGROUPENROLLMENTSTATUS,MEDICALGROUPENROLLMENTSTATUS,,General,20.10,Simple
+226,ATHENAONE,ORDERSETDIAGNOSIS,ORDERSETDIAGNOSIS,,Clinicals,20.10,Simple
+227,ATHENAONE,ORDERSETDIAGNOSISSNOMED,ORDERSETDIAGNOSISSNOMED,,Clinicals,20.10,Simple
+228,ATHENAONE,ANESTHESIACASEDATA,ANESTHESIACASEDATA,,Clinicals,20.10,Simple
+229,ATHENAONE,ANESTHESIATYPE,ANESTHESIATYPE,,Clinicals,20.10,Simple
+230,ATHENAONE,EXTENUATINGCIRCUMSTANCE,EXTENUATINGCIRCUMSTANCE,Extenuating circumstances for anesthesia,Clinicals,20.10,Simple
+231,ATHENAONE,OPERATINGROOM,OPERATINGROOM,Table used for operating rooms,Clinicals,20.10,Simple
+232,ATHENAONE,POSTOPERATIVECOMPLICATION,POSTOPERATIVECOMPLICATION,Table used for post operative complications,Clinicals,20.10,Simple
+233,ATHENAONE,PROCEDURECODEREFGROUP,PROCEDURECODEREFGROUP,,Collector,20.10,Simple
+234,ATHENAONE,TEMPCLAIMDIAGNOSISAUDR,TEMPCLAIMDIAGNOSISAUDR,,Collector,20.10,Simple
+235,ATHENAONE,TIMESHEET,TIMESHEET,Log of all services performed by a provider on a specific date of service,Clinicals,20.10,Simple
+236,ATHENAONE,TIMESHEETBATCH,TIMESHEETBATCH,A grouping of time sheets for a specified date of service,Clinicals,20.10,Simple
+237,ATHENAONE,CLINICALORDERSETUSER,CLINICALORDERSETUSER,,Clinicals,20.10,Simple
+238,ATHENAONE,TABLESPACEINFOAUDR,TABLESPACEINFOAUDR,,General,20.10,Simple
+239,ATHENAONE,CLINICALENCOUNTERREASON,CLINICALENCOUNTERREASON,,Clinicals,20.10,Simple
+240,ATHENAONE,PORTALFORM,PORTALFORM,"Patient health history forms filled out by the patient in the portal (Communicator). Eventually, these will be merged into the patient's clinical data.",Patient Experience,20.10,Simple
+241,ATHENAONE,PORTALFORMSECTION,PORTALFORMSECTION,A section of a PORTALFORM.,Patient Experience,20.10,Simple
+242,ATHENAONE,PORTALFORMSECTIONSTATUS,PORTALFORMSECTIONSTATUS,"This holds the status of each section of each portal form (currently, just complete or not). It is a little odd to have an entire table for what amounts to a single field, but this is preferable to jamming this field somewhere it does not belong.",Patient Experience,20.10,Simple
+243,ATHENAONE,FEESCHEDULECONDITION,FEESCHEDULECONDITION,,Collector,20.10,Simple
+244,ATHENAONE,FEESCHEDULEMODIFIER,FEESCHEDULEMODIFIER,,Collector,20.10,Simple
+245,ATHENAONE,FEESCHEDULETERM,FEESCHEDULETERM,,Collector,20.10,Simple
+246,SCHEDULING,SLOT_HISTORICAL,SLOT_HISTORICAL,"Similar to the Appointment_Dataset, the Slot Historical DataSet also derived from the appointment table in athenaNet but has been manipulated significantly to capture the nuance of athenaCollector scheduling. For example, Frozen and Forced slots have been identified.",Datamart,20.10,Governed / Analytical
+247,SCHEDULING,SLOT_FUTURE,SLOT_FUTURE,SLOT_FUTURE_DATASET,Datamart,20.10,Governed / Analytical
+248,ATHENAONE,APPOINTMENTTYPECLASS,APPOINTMENTTYPECLASS,Stores details about the list of appointment type classes,Collector,20.11,Simple
+249,ATHENAONE,CLIENT,CLIENT,"Core patient demographic information, on a provider-group level.",General,20.11,Simple
+250,ATHENAONE,CUSTOMREPORTINGGROUP,CUSTOMREPORTINGGROUP,Stores details about Filter Groups found on the Custom Filters page of athenaNet,Collector,20.11,Simple
+251,ATHENAONE,INSURANCEREPORTINGCATEGORY,INSURANCEREPORTINGCATEGORY,Details about categories assigned to each insurance plan maintained in athenaNet,Collector,20.11,Simple
+252,ATHENAONE,LOCALREPORTINGCATEGORY,LOCALREPORTINGCATEGORY,Stores details about Custom Insurance Groups set up on the Custom Insurance Group Names page in athenaNet,Collector,20.11,Simple
+253,ATHENAONE,LOCALREPORTINGCATEGORYINS,LOCALREPORTINGCATEGORYINS,Stores details about Custom Insurance Groupings set up on the Custom Insurance Grouping page in athenaNet,Collector,20.11,Simple
+254,ATHENAONE,PLACEOFSERVICE,PLACEOFSERVICE,Stores information about place of service types,Collector,20.11,Simple
+255,ATHENAONE,PROCEDURECODEGROUP,PROCEDURECODEGROUP,Stores details about procedure code groups configured on the Procedure Code Groups page in athenaNet,Collector,20.11,Simple
+256,ATHENAONE,REFERRINGPROVIDERGROUP,REFERRINGPROVIDERGROUP,Stores details about referring provider groups specified on the Referring Provider Group page in athenaNet,Collector,20.11,Simple
+257,ATHENAONE,REPORTINGGROUPCATEGORY,REPORTINGGROUPCATEGORY,Corresponds to custom filters specified on Custom Filters page of athenaNet. Ties to filter groups found in CUSTOMREPORTINGGROUP table,General,20.11,Simple
+258,ATHENAONE,SPECIALTY,SPECIALTY,Stores details about provider specialties,General,20.11,Simple
+259,ATHENAONE,DEPARTMENTPROVIDER,DEPARTMENTPROVIDER,Stores configuration for the Provider Drop-Downs page,Collector,20.11,Simple
+260,ATHENAONE,AMEXCONTRACT,AMEXCONTRACT,"Bank deposits from American Express will behave according to the parameters of the associated AmEx Merchant contract. We store these parameters so that we know what to expect in the way of bank deposits. While technically operating under a seperate Merchant ID, we submit AmEx transactions to our gateway with the same Terminal ID that we use for all others, hence the foreign key to TERMINAL.",Collector,21.1,Simple
+261,ATHENAONE,CLAIMALARMDAYS,CLAIMALARMDAYS,,Collector,21.1,Simple
+262,ATHENAONE,BATCHMETHOD,BATCHMETHOD,,Collector,21.1,Simple
+263,ATHENAONE,CARDTYPE,CARDTYPE,Defines the possible types of EPAYMENTCARDs.,Collector,21.1,Simple
+264,ATHENAONE,ENROLLMENTCATEGORY,ENROLLMENTCATEGORY,,Collector,21.1,Simple
+265,ATHENAONE,ELIGIBILITYBENEFIT,ELIGIBILITYBENEFIT,,Collector,21.1,Simple
+266,ATHENAONE,ELIGIBILITYBENEFITDATE,ELIGIBILITYBENEFITDATE,,Collector,21.1,Simple
+267,ATHENAONE,GOVERNMENTFUNDEDTYPE,GOVERNMENTFUNDEDTYPE,,Collector,21.1,Simple
+268,ATHENAONE,PATIENTLABELAPPTMATRIX,PATIENTLABELAPPTMATRIX,"Maps a given combination of (provider, department, local patient appt label) to an appointmenttype. This is used by patients to select an appointmenttype when web-scheduling an appointment.",Patient Experience,21.1,Simple
+269,ATHENAONE,PATIENTLABELAPPTMATRIXAUDR,PATIENTLABELAPPTMATRIXAUDR,,Patient Experience,21.1,Simple
+270,ATHENAONE,CRDNETWORKDOCUMENT,CRDNETWORKDOCUMENT,"Stores document meta data retrieved from a network, one row per unique document per patient ID.",Clinicals,21.1,Simple
+271,ATHENAONE,APPOINTMENTTYPEMATRIX,APPOINTMENTTYPEMATRIX,"Settings associated with specific provider, department, and appointment type combinations.",Patient Experience,21.1,Simple
+272,ATHENAONE,APPOINTMENTTYPEMATRIXAUDR,APPOINTMENTTYPEMATRIXAUDR,,Patient Experience,21.1,Simple
+273,ATHENAONE,DEPARTMENTAUDIT,DEPARTMENTAUDIT,,Collector,21.1,Simple
+274,ATHENAONE,RVU,RVU,,Collector,21.1,Simple
+275,ATHENAONE,LOCALCLINICALPROVIDER,LOCALCLINICALPROVIDER,Stores a temporary list of clinical providers suggested by practices to be checked/added to the root clinicalprovider table by ATHENA,Clinicals,21.2,Simple
+276,ATHENAONE,CLINICALPRESCRIPTION,CLINICALPRESCRIPTION,"An extender table for document, stores additional information about a prescription order.",Clinicals,21.2,Simple
+277,ATHENAONE,CLINICALVACCINE,CLINICALVACCINE,An extender table for document; stores additional information about a vaccine order.,Clinicals,21.2,Simple
+278,ATHENAONE,APPOINTMENTCOMMUNICATOR,APPOINTMENTCOMMUNICATOR,Stores extra appointment data applicable to appointments scheduled through communicator,Collector,21.3,Simple
+279,ATHENAONE,APPOINTMENTCONFIRMATION,APPOINTMENTCONFIRMATION,,Collector,21.3,Simple
+280,ATHENAONE,APPOINTMENTLIMIT,APPOINTMENTLIMIT,An appointment limit rule condition for a practice.,Collector,21.3,Simple
+281,ATHENAONE,CDSCLAIMDIAGNOSIS,CDSCLAIMDIAGNOSIS,Stores denormalized icd diagnosis information for use by the CDS engine. Intended as a denormalized view of the claimdiagnosis table and not audited to save space.,Collector,21.3,Simple
+282,ATHENAONE,CLINICALENCOUNTERAUDR,CLINICALENCOUNTERAUDR,,Clinicals,21.3,Simple
+283,ATHENAONE,CLINICALENCOUNTERDATAAUDR,CLINICALENCOUNTERDATAAUDR,,Clinicals,21.3,Simple
+284,ATHENAONE,CLINICALENCOUNTERDICTATION,CLINICALENCOUNTERDICTATION,A record of encounter notes that were dictated and transcribed into text,Clinicals,21.3,Simple
+285,ATHENAONE,CPNETWORKCLINICALPROVIDER,CPNETWORKCLINICALPROVIDER,"Join table for CPNETWORK and CLINICALPROVIDER. Also includes an optional membership type. A clinical provider can only be a member of a local network in one way, hence the uniqueness constraint.",Clinicals,21.3,Simple
+286,ATHENAONE,CPNETWORKCONTEXT,CPNETWORKCONTEXT,Defines the contexts in which the associated local network is available.,Clinicals,21.3,Simple
+287,ATHENAONE,CPNETWORKMEMBERTYPE,CPNETWORKMEMBERTYPE,Defines the membership types a clinical provider may have in a local network.,Clinicals,21.3,Simple
+288,ATHENAONE,ENROLLMENTPARAMETER,ENROLLMENTPARAMETER,"This table stores many to many (or many to one/one to many) mappings between PARENTTABLENAME, PARENTROWID and PARAMETERNAME, PARAMETERVALUE. Interaction with this table is facilitated in the Enrollment::Parameters package.",Collector,21.3,Simple
+289,ATHENAONE,HCCDISMISSALREASONCODE,HCCDISMISSALREASONCODE,Store user dismiss reason category code,Clinicals,21.3,Simple
+290,ATHENAONE,LOCALPHRSTATUSPROVIDER,LOCALPHRSTATUSPROVIDER,Many-to-Many table joining LOCALPUBLICHEALTHREGISTRYSTATUS to PROVIDER,Clinicals,21.3,Simple
+291,ATHENAONE,LOCALTEXTMACRO,LOCALTEXTMACRO,This table stores the default configuration for text accelerators (macros).,Clinicals,21.3,Simple
+292,ATHENAONE,LOCALTEXTMACROLOG,LOCALTEXTMACROLOG,This table contains information about which macros users have used. It is a log of each time a macro has been used and in which context it was used in.,Clinicals,21.3,Simple
+293,ATHENAONE,MDPPARTNER,MDPPARTNER,"A table to track API (formerly ""MDP API"") users.",General,21.3,Simple
+294,ATHENAONE,P4PSUBMISSIONDATA,P4PSUBMISSIONDATA,Stores measure satisfaction data tied to a specific submission.,Clinicals,21.3,Simple
+295,ATHENAONE,P4PSUBMISSIONGROUP,P4PSUBMISSIONGROUP,A P4PSubmissionGroup is a combination of a Provider/TIN and a P4P Program. It is a collection of P4PSubmissions.,Clinicals,21.3,Simple
+296,ATHENAONE,PMGMESSAGINGCONTENT,PMGMESSAGINGCONTENT,"Used to store source representation information (e.g., a department's DISPLAYNAME for emails) used in patient messaging functions.",Clinicals,21.3,Simple
+297,ATHENAONE,CHARTQUESTIONNAIREANSWER,CHARTQUESTIONNAIREANSWER,Holds all of the answers for an individual chart questionnaire.,Clinicals,21.4,Simple
+298,ATHENAONE,CUSTOMRULE,CUSTOMRULE,Stores information about practice Custom Rules specified on the settings pages in the 'My Custom Rule Parameters' section found in Billing Admin,Collector,21.4,Simple
+299,ATHENAONE,CLAIMRULE,CLAIMRULE,,Collector,21.4,Simple
+300,ATHENAONE,DOCUMENTANNOTATION,DOCUMENTANNOTATION,Stores information about annotations made to documents,Clinicals,21.4,Simple
+301,ATHENAONE,LOCALCLAIMRULE,LOCALCLAIMRULE,Stores information about claim rules that are run in the system. These are created/edited by the Development team via an internal page,Collector,21.4,Simple
+302,ATHENAONE,LOCALCLINICALTEMPLATE,LOCALCLINICALTEMPLATE,Stores information about templates created via various templates pages found in Clinicals Admin,Clinicals,21.4,Simple
+303,ATHENAONE,NETWORKCLAIMRULE,NETWORKCLAIMRULE,,Collector,21.4,Simple
+304,ATHENAONE,P4PSUBMISSION,P4PSUBMISSION,Stores submission status information for Quality Management / P4P programs,Clinicals,21.4,Simple
+305,ATHENAONE,QUESTIONNAIREQUESTIONANSWER,QUESTIONNAIREQUESTIONANSWER,Hold a subset of answers for a specific question in the QUESTIONNAIREQUESTION table,Clinicals,21.4,Simple
+306,ATHENAONE,RECORDNUMBERCATEGORYAUDR,RECORDNUMBERCATEGORYAUDR,,General,21.4,Simple
+307,ATHENAONE,RECORDNUMBERSELECTAUDR,RECORDNUMBERSELECTAUDR,,General,21.4,Simple
+308,ATHENAONE,SAVEDSCRUBDATA,SAVEDSCRUBDATA,Stores arbitrary extra information about a claim and charges at the time of billing events. Also stores this extra information at the end of each scrub.,Collector,21.4,Simple
+309,ATHENAONE,VITALATTRIBUTEVALUE,VITALATTRIBUTEVALUE,Data container for vital attributes that have sets of data,Clinicals,21.4,Simple
+310,ATHENAONE,APPOINTMENTLIMITTIMERANGE,APPOINTMENTLIMITTIMERANGE,A specific time range and the limit that goes with that range for an limit rule. Each limit rule can define many time ranges with different limits.,Collector,21.5,Simple
+311,ATHENAONE,CLIENTRECORDNUMBER,CLIENTRECORDNUMBER,,General,21.5,Simple
+312,ATHENAONE,CLINICALENCOUNTERTIMESTAMP,CLINICALENCOUNTERTIMESTAMP,Stores encounter event timestamps.,Clinicals,21.5,Simple
+313,ATHENAONE,COUNTRY,COUNTRY,Stores information about countries,General,21.5,Simple
+314,ATHENAONE,INTERFACEMESSAGEDATA,INTERFACEMESSAGEDATA,,General,21.5,Simple
+315,ATHENAONE,LOCALPROCEDURETEMPLATE,LOCALPROCEDURETEMPLATE,Stores details specific to local procedure templates,Clinicals,21.5,Simple
+316,ATHENAONE,P4PRESULTDATA,P4PRESULTDATA,Stores supporting P4P measure satisfaction data,Clinicals,21.5,Simple
+317,ATHENAONE,APPOINTMENTVIEW,APPOINTMENTVIEW,,Collector,21.5,Complex
+318,ATHENAONE,VENDORTRANSACTIONBILLINGBATCH,VENDORTRANSACTIONBILLINGBATCH,,Collector,21.5,Simple
+319,ATHENAONE,CUSTOMRULECATEGORY,CUSTOMRULECATEGORY,Stores Custom Rule Categories and information about them,Collector,21.7,Simple
+320,ATHENAONE,INSREPCAT_INSREPCATGRP,INSREPCAT_INSREPCATGRP,Mapping table between Insurance Reporting Category and Insurance Reporting Category Group,Collector,21.7,Simple
+321,ATHENAONE,INSREPORTINGCATEGORYGROUP,INSREPORTINGCATEGORYGROUP,"This table is used strictly for reporting purposes, and is used to group the current insurance reporting categories into even larger groups (e.g. all the Medicaids, all the Blues, all the Texas Workers' Comps).",Collector,21.7,Simple
+322,ATHENAONE,RULEREPORTINGCATEGORY,RULEREPORTINGCATEGORY,Classifies rules by their behavior in order to report on groups of rules or scrubs,Collector,21.7,Simple
+323,ATHENAONE,WEBPORTALLOG,WEBPORTALLOG,This Table is responsible for logging the Activities and Actions of the Patient Portal.,Patient Experience,21.7,Simple
+324,ATHENAONE,PATIENTACCOUNTALARM,PATIENTACCOUNTALARM,,Clinicals,21.7,Simple
+325,ATHENAONE,PATIENTACCOUNTALARMTYPE,PATIENTACCOUNTALARMTYPE,,Clinicals,21.7,Simple
+326,ATHENAONE,CLINICALPROVIDERDIRECTADDR,CLINICALPROVIDERDIRECTADDR,Stores all the Direct addresses associated with a clinicalprovider.,Clinicals,21.7,Simple
+327,ATHENAONE,PATIENTSNOMEDICD10,PATIENTSNOMEDICD10,This table stores a map between SNOMEDs diagnoses documented in encounters and the ICD-10 codes that were used as associated billing codes.,Clinicals,21.7,Simple
+328,ATHENAONE,RECORDNUMBERCATEGORY,RECORDNUMBERCATEGORY,,General,21.7,Simple
+329,ATHENAONE,CHRONICCAREMANAGEMENT,CHRONICCAREMANAGEMENT,,General,21.7,Simple
+330,ATHENAONE,CHRONICCARESTATUS,CHRONICCARESTATUS,Stores the different statuses that are allowed for the state of a patient's chronic care management enrollment.,General,21.7,Simple
+331,ATHENAONE,INTERFACEMESSAGE,INTERFACEMESSAGE,Stores data about interface messages,General,21.7,Simple
+332,ATHENAONE,INTERFACEMESSAGELOG,INTERFACEMESSAGELOG,Stores additional details regarding interface messages,General,21.7,Simple
+333,ATHENAONE,DATARECONCILETASK,DATARECONCILETASK,,General,21.8,Simple
+334,ATHENAONE,DOCUMENTRESULTDATA,DOCUMENTRESULTDATA,Stores the document result type and value captured for a document,Clinicals,21.8,Simple
+335,ATHENAONE,DOCUMENTRESULTTYPE,DOCUMENTRESULTTYPE,Stores the list of result values that could be associated with result types,Clinicals,21.8,Simple
+336,ATHENAONE,DOCUMENTRESULTTYPEVALUE,DOCUMENTRESULTTYPEVALUE,Stores the mapping between the result type and result values,Clinicals,21.8,Simple
+337,ATHENAONE,DOCUMENTRESULTVALUE,DOCUMENTRESULTVALUE,Stores the list of result values that could be associated with result types,Clinicals,21.8,Simple
+338,ATHENAONE,LOCALCLINICALLABTEMPLATELIST,LOCALCLINICALLABTEMPLATELIST,,General,21.8,Simple
+339,ATHENAONE,LOCALWORKLISTRECORDAUDR,LOCALWORKLISTRECORDAUDR,,General,21.8,Simple
+340,ATHENAONE,SOCIALHXFORMQUESTION,SOCIALHXFORMQUESTION,Contains the social history questions.,Clinicals,21.8,Simple
+341,ATHENAONE,SOCIALHXFORMRESPONSE,SOCIALHXFORMRESPONSE,Stores information on the Social History form that was responded to.,Clinicals,21.8,Simple
+342,ATHENAONE,SOCIALHXFORMRESPONSEANSWER,SOCIALHXFORMRESPONSEANSWER,Stores the answers to questions from the Social History form responses.,Clinicals,21.8,Simple
+343,ATHENAONE,APPTCANONAPPTTYPESPLTY,APPTCANONAPPTTYPESPLTY,Maps Canonical Appointment Types to zero or more Specialty IDs.,General,21.9,Simple
+344,ATHENAONE,APPTPARAPPOINTMENTTYPE,APPTPARAPPOINTMENTTYPE,A mapping from Patient Appointment Reasons to appointment types.,Patient Experience,21.9,Simple
+345,ATHENAONE,APPTSCHEDAPPLIEDTEMPLATE,APPTSCHEDAPPLIEDTEMPLATE,The current and historical applications of scheduling templates,General,21.9,Simple
+346,ATHENAONE,APPTSCHEDPROFILEAPPTTYPE,APPTSCHEDPROFILEAPPTTYPE,Scheduling profile information specific to an appointment type.,Patient Experience,21.9,Simple
+347,ATHENAONE,APPTSCHEDTEMPAPPTTYPE,APPTSCHEDTEMPAPPTTYPE,Stores the list of appointments associated with a specific appointment type block ,General,21.9,Simple
+348,ATHENAONE,APPTSCHEDTEMPAPPTTYPEBLOCK,APPTSCHEDTEMPAPPTTYPEBLOCK,A block of time associated with a list of appointment types for a streamlined schedule admin template,General,21.9,Simple
+349,ATHENAONE,APPTSCHEDTEMPDEPARTMENTBLOCK,APPTSCHEDTEMPDEPARTMENTBLOCK,A block of time associated with a department for a streamlined schedule admin template,General,21.9,Simple
+350,ATHENAONE,APPTSCHEDULINGNOTE,APPTSCHEDULINGNOTE,Notes for schedulers and patients to show when scheduling appointments.,General,21.9,Simple
+351,ATHENAONE,APPTSCHEDULINGPROFILE,APPTSCHEDULINGPROFILE,A profile that describes scheduling preferences and rules.,General,21.9,Simple
+352,ATHENAONE,APPTSCHEDULINGTEMPLATE,APPTSCHEDULINGTEMPLATE,A scheduling template for the streamlined schedule admin,General,21.9,Simple
+353,ATHENAONE,APPTSLOTSCHEDULABLE,APPTSLOTSCHEDULABLE,A denormalized table containing information if a slot can be scheduled for a given appointment type.,General,21.9,Simple
+354,ATHENAONE,CANONICALAPPOINTMENTTYPE,CANONICALAPPOINTMENTTYPE,Groups appointment types of multiple durations and links appointment types to a global appointment type if one exists,General,21.9,Simple
+355,ATHENAONE,PATIENTLOCATION,PATIENTLOCATION,Stores information relating to patient locations within the practice,Clinicals,21.9,Simple
+356,ATHENAONE,EXTRACLAIMFIELD,EXTRACLAIMFIELD,,Collector,21.9,Simple
+357,ATHENAONE,CLINICALPATIENTDATAAUDR,CLINICALPATIENTDATAAUDR,,Clinicals,21.10,Simple
+358,ATHENAONE,PATIENTGPALHISTORY,PATIENTGPALHISTORY,Patient answers to GPAL history questions,Clinicals,21.10,Simple
+359,ATHENAONE,LOCALCLINICALLABTEMPLATE,LOCALCLINICALLABTEMPLATE,Table storing the data of the In-house Clinical provider,Clinicals,21.11,Simple
+360,ATHENAONE,ORDERAUTH,ORDERAUTH,Stores prior auth fields that are not insurance-specific,Clinicals,21.11,Simple
+361,ATHENAONE,ORDERAUTHCPT,ORDERAUTHCPT,This table maps CPT codes to ORDERUTH,Clinicals,21.11,Simple
+362,ATHENAONE,ORDERAUTHINSURANCE,ORDERAUTHINSURANCE,Stores insurance-specific information and maps back to ORDERAUTH,Clinicals,21.11,Simple
+363,ATHENAONE,DOCUMENTAUDR,DOCUMENTAUDR,,Clinicals,21.11,Simple
+364,ATHENAONE,CLINICALPROVIDERORDERTYPE,CLINICALPROVIDERORDERTYPE,,Clinicals,21.11,Simple
+365,ATHENAONE,LOCALCLINICALLABTEMPLATEGRID,LOCALCLINICALLABTEMPLATEGRID,"Worksheet grid templates, similar to analyte and result templates. Each entry is a cell in the grid.",Clinicals,21.11,Simple
+366,ATHENAONE,USERPROFILEAUDR,USERPROFILEAUDR,,Collector,21.11,Simple
+367,ATHENAONE,FEESCHEDLOCALALLOWABLECATEGORY,FEESCHEDLOCALALLOWABLECATEGORY,,Collector,21.11,Simple
+368,ATHENAONE,LOCALALLOWCATDATA,LOCALALLOWCATDATA,A local allowable category parameter specifies an insurance package property to exclude or include in the local allowable category.,Collector,21.11,Simple
+369,ATHENAONE,PROVIDERAUDR,PROVIDERAUDR,Stores audit values from the Provider table,Collector,22.1,Simple
+370,ATHENAONE,DEPARTMENTFEESCHEDULE,DEPARTMENTFEESCHEDULE,Connects a Department ID to a Feed Schedule ID,Collector,22.1,Simple
+371,ATHENAONE,PATIENTSNOMEDPROBLEM,PATIENTSNOMEDPROBLEM,Stores SNOMED-backed problems for a patient's chart,Clinicals,22.1,Simple
+372,ATHENAONE,PDMPREPORTLOG,PDMPREPORTLOG,Stores audit data about when a provider attempts to view a prescription monitoring report and if that report was rendered or not.,Clinicals,22.2,Simple
+373,ATHENAONE,REFERRALAUTHAUDR,REFERRALAUTHAUDR,,Collector,22.2,Simple
+374,ATHENAONE,CDSMECHANISM,CDSMECHANISM,"Stores the available clinical decision support mechanisms (CDSMs). This is the complete list of CDSMs that a provider could consult, not all of them may be supported through automated clinical decision support workflows in athenaNet.",Clinicals,22.3,Simple
+375,ATHENAONE,PAMAMODIFIER,PAMAMODIFIER,Stores the available results of appropriate use analysis for an order by a clinical decision support mechanism (CDSM). This is the list of modifiers supported by athenaNet and not the complete list of possible results.,Clinicals,22.3,Simple
+376,ATHENAONE,LOCALCLINICALELEMENTVALUE,LOCALCLINICALELEMENTVALUE,This table stores HPI/ROS finding names for local templates,Clinicals,22.3,Simple
+377,ATHENAONE,LOCALCLINICALTEMPLATEPARAGRAPH,LOCALCLINICALTEMPLATEPARAGRAPH,Local version of athena1.clinicaltemplateparagraph.,Clinicals,22.3,Simple
+378,ATHENAONE,LOCALCLINICALTEMPLATESENTENCE,LOCALCLINICALTEMPLATESENTENCE,Local version of athena1.clinicaltemplatesentence.,Clinicals,22.3,Simple
+379,ATHENAONE,CLIENTFORM,CLIENTFORM,Tracks the client html forms,Collector,22.3,Simple
+380,ATHENAONE,RELEASEAUTH,RELEASEAUTH,,Collector,22.3,Simple
+381,ATHENAONE,APPOINTMENTRECORDNUMBER,APPOINTMENTRECORDNUMBER,,Collector,22.3,Simple
+382,ATHENAONE,CLAIMRECORDNUMBER,CLAIMRECORDNUMBER,Stores claim-level custom field info.,Collector,22.3,Simple
+383,ATHENAONE,DEPARTMENTRECORDNUMBER,DEPARTMENTRECORDNUMBER,Stores department-based custom field info.,General,22.3,Simple
+384,ATHENAONE,PROVIDERRECORDNUMBER,PROVIDERRECORDNUMBER,Stores provider-based custom field info.,General,22.3,Simple
+385,ATHENAONE,LOCALWORKLISTCATEGORY,LOCALWORKLISTCATEGORY,Practice (as opposed to Athena) created categories of work.,Collector,22.3,Simple
+386,ATHENAONE,LOCALWORKLISTRECORD,LOCALWORKLISTRECORD,Work that is the responsibility of the practice (rather than Athena).,Collector,22.3,Simple
+387,ATHENAONE,LOCALWORKLISTTEAM,LOCALWORKLISTTEAM,Practice (as opposed to Athena) teams responsible for working claims.,Collector,22.3,Simple
+388,ATHENAONE,HCCFACTOR,HCCFACTOR,These are the current HCC factors that contribute to the patient risk score. Currently only populated when synchronized with PopHealth.,Clinicals,22.3,Simple
+389,ATHENAONE,APPTSPECIALTYAPPTTYPE,APPTSPECIALTYAPPTTYPE,Holds starting appointment types to be added to a context. These are organized by speciality.,Collector,22.3,Simple
+390,ATHENAONE,GLOBALAPPOINTMENTTYPE,GLOBALAPPOINTMENTTYPE,Global Appointment Types for practices with default appointment types,Collector,22.3,Simple
+391,ATHENAONE,VISIT,VISIT,Stores the data that belongs to an visit,Collector,22.4,Simple
+392,ATHENAONE,VISITBILLVISIT,VISITBILLVISIT,Stores the data that belongs to a visit bill,Collector,22.4,Simple
+393,ATHENAONE,CHARGEDETAIL,CHARGEDETAIL,Details on charges to assist inpatient billing.,Collector,22.4,Simple
+394,ATHENAONE,ERABATCHCOPYMAP,ERABATCHCOPYMAP,"When we receive an EoB without a check, Perot will send us an ERA batch with an EOBUNLISTED batch exception. We post all denials in such a batch, and kick all payments with REMITRECEIVED. When we finally get the check, we want to copy the original ERA batch and post all payments in the copy. This table links the original batch to the copy that was created when we received the check.",Collector,22.4,Simple
+395,ATHENAONE,VITALATTRIBUTEREADING,VITALATTRIBUTEREADING,Readings of vital signs,Clinicals,22.4,Simple
+396,ATHENAONE,APPOINTMENTTICKLERAUDR,APPOINTMENTTICKLERAUDR,Stores audit details from the APPOINTMENTTICKLER table.,Collector,22.5,Simple
+397,ATHENAONE,ERARECORD,ERARECORD,Stores ERA record details,Collector,22.5,Simple
+398,ATHENAONE,DOCUMENTSEEN,DOCUMENTSEEN,Stores document view record.,Collector,22.7,Simple
+399,ATHENAONE,FAXPAGEGROUP,FAXPAGEGROUP,,Collector,22.7,Simple
+400,ATHENAONE,ANSISPECIALTY,ANSISPECIALTY,,Clinicals,22.7,Simple
+401,ATHENAONE,CLINICALORDERTYPEANSISPECIALTY,CLINICALORDERTYPEANSISPECIALTY,Mapping table between Clinical Order Types and ANSI Specialties,Clinicals,22.7,Simple
+402,ATHENAONE,CLINICALORDERTYPEGROUPPROVIDER,CLINICALORDERTYPEGROUPPROVIDER,"many-to-many link table between ordertypegroups and providers. for example, there will be a 'Retail Prescriptions' order type group that will be associated with all retail pharmacies, and an 'X-Ray' order type group for all clinicalproviders with an X-Ray machine.",Clinicals,22.7,Simple
+403,ATHENAONE,DOCUMENTACTIONREASON,DOCUMENTACTIONREASON,The core routing table that defines possible every possible action at any given step in the workflow. This is not autonumbered.,Clinicals,22.7,Simple
+404,ATHENAONE,LOCALCLINICALORDERTYPE,LOCALCLINICALORDERTYPE,,Clinicals,22.7,Simple
+405,ATHENAONE,ORDERAUTHAUDR,ORDERAUTHAUDR,,Clinicals,22.7,Simple
+406,ATHENAONE,OUTOFNETWORKREFERRALREASON,OUTOFNETWORKREFERRALREASON,Stores out of network referral reasons. That is a reason that a doctor opted to select a non-community trading partner as the receiving provider on a referral. It is only used if the Community practice setting is on and the Community: Track Out-Of-Network Referrals setting is also on.,Collector,22.7,Simple
+407,ATHENAONE,PROVIDERDIRECTADDRESS,PROVIDERDIRECTADDRESS,Connects Direct Addresses to providers.,Collector,22.7,Simple
+408,ATHENAONE,REFERRALADMINLINK,REFERRALADMINLINK,Links an outbound consult order to an inbound ADMIN_REFERRAL document,Collector,22.7,Simple
+409,ATHENAONE,REFERRALAPPOINTMENTLINK,REFERRALAPPOINTMENTLINK,Stores the fulfiller-side link between referral orders and their scheduled appointments.,Collector,22.7,Simple
+410,ATHENAONE,SCANPAGEMETADATA,SCANPAGEMETADATA,,Clinicals,22.7,Simple
+411,ATHENAONE,SPECIALTYCOTMAPPING,SPECIALTYCOTMAPPING,Creates mapping between the specialty and clinical order type,Clinicals,22.7,Simple
+412,ATHENAONE,LOGUSEREVENT,LOGUSEREVENT,Contains security information associated with user logon events,Collector,22.7,Simple
+413,ATHENAONE,CHARTQUESTIONNAIREAUDR,CHARTQUESTIONNAIREAUDR,,Clinicals,22.7,Simple
+414,ATHENAONE,CLNENCDIAGNOSISAUDR,CLNENCDIAGNOSISAUDR,,Clinicals,22.7,Simple
+415,ATHENAONE,PATIENTSNOMEDPROBLEMAUDR,PATIENTSNOMEDPROBLEMAUDR,,Clinicals,22.7,Simple
+416,ATHENAONE,COMMONWELLPATIENTDATA,COMMONWELLPATIENTDATA,,Clinicals,22.8,Simple
+417,ATHENAONE,COMMONWELLPATIENTDATAAUDR,COMMONWELLPATIENTDATAAUDR,,Clinicals,22.8,Simple
+418,ATHENAONE,CLINICALPAPERFORM,CLINICALPAPERFORM,,Clinicals,22.8,Simple
+419,ATHENAONE,PATIENTCASE,PATIENTCASE,,Clinicals,22.8,Simple
+420,ATHENAONE,CLINICALORDERTYPEGROUP,CLINICALORDERTYPEGROUP,Holds the least-granular categories of Clinical Order Types.,Clinicals,22.8,Simple
+421,ATHENAONE,MAILBOXDEPOSITTYPE,MAILBOXDEPOSITTYPE,,Collector,22.8,Simple
+422,ATHENAONE,MAILBOXGROUP,MAILBOXGROUP,,Collector,22.8,Simple
+423,ATHENAONE,PRODUCTTYPE,PRODUCTTYPE,Product types on an insurance package,Collector,22.8,Simple
+424,ATHENAONE,MEDICALGROUPFEESCHEDULE,MEDICALGROUPFEESCHEDULE,,Collector,22.8,Simple
+425,ATHENAONE,PROVIDERTYPEFEESCHEDULE,PROVIDERTYPEFEESCHEDULE,Mapping table from fee schedule to applicable provider types for that fee schedule.,Collector,22.8,Simple
+426,ATHENAONE,PROVIDERFEESCHEDULE,PROVIDERFEESCHEDULE,,Collector,22.8,Simple
+427,ATHENAONE,CLINICALTEMPLATEDATA,CLINICALTEMPLATEDATA,,Clinicals,22.8,Simple
+428,ATHENAONE,DOCUMENTCLINICALTEMPLATEDATA,DOCUMENTCLINICALTEMPLATEDATA,,Clinicals,22.8,Simple
+429,ATHENAONE,CHARTALERTAUDR,CHARTALERTAUDR,,Clinicals,22.8,Simple
+430,ATHENAONE,SPECIALTYFEESCHEDULE,SPECIALTYFEESCHEDULE,,Clinicals,22.8,Simple
+431,ATHENAONE,CLINICALLABTEMPLATE,CLINICALLABTEMPLATE,Global version of localclinicallabtemplate (used in Office Order Types).,Clinicals,22.9,Simple
+432,ATHENAONE,LOCALCHARGEGROUP,LOCALCHARGEGROUP,Local version of athena1.chargegroup.,Collector,22.9,Simple
+433,ATHENAONE,LOCALORDERTYPEPROCCODE,LOCALORDERTYPEPROCCODE,Local version of athena1.clinicalordertypeprocedurecode.,Clinicals,22.9,Simple
+434,ATHENAONE,LOCALPROCTEMPLATEPROCCODE,LOCALPROCTEMPLATEPROCCODE,,Clinicals,22.9,Simple
+435,ATHENAONE,USERPREFERENCECONTEXT,USERPREFERENCECONTEXT,Stores user preferences,General,22.9,Simple
+436,ATHENAONE,PATIENTINSURANCECOPAY,PATIENTINSURANCECOPAY,Stores insurance copay data,Collector,22.9,Simple
+437,ATHENAONE,INTERFACETRANSLATION,INTERFACETRANSLATION,Identifies vendor software with optional version information.,General,22.9,Simple
+438,ATHENAONE,REFERRALSOURCE,REFERRALSOURCE,Stores data related to practice specified referral sources,Collector,22.9,Simple
+439,ATHENAONE,REFERRALSOURCEAUDR,REFERRALSOURCEAUDR,,Collector,22.9,Simple
+440,ATHENAONE,CHARTEPISODEDATA,CHARTEPISODEDATA,Represents all of the meta data for a chart episode.,Clinicals,22.9,Simple
+441,ATHENAONE,COTORDERCODE,COTORDERCODE,Stores clinical order type mappings to any code and codesystem combination.,Clinicals,22.9,Simple
+442,ATHENAONE,INCENTIVEPROGRAM,INCENTIVEPROGRAM,"INCENTIVEPROGRAM stores is a record of all Incentive Programs we recognize remittance for, as distinct from P4PPROGRAM, which stores clinicals programs that we manage submission and enrollment for.",Collector,22.9,Simple
+443,ATHENAONE,PROVIDERENROLLMENTSTATUS,PROVIDERENROLLMENTSTATUS,,Collector,22.9,Simple
+444,ATHENAONE,PRACTICEROLE,PRACTICEROLE,,Clinicals,22.10,Simple
+445,ATHENAONE,PRACTICEROLEDEPARTMENT,PRACTICEROLEDEPARTMENT,,Clinicals,22.10,Simple
+446,ATHENAONE,PRACTICEROLEUSER,PRACTICEROLEUSER,,Clinicals,22.10,Simple
+447,ATHENAONE,TIMEZONECONFIGURATION,TIMEZONECONFIGURATION,"Stores a mapping of many-to-1 practice structure entities ((context), brand, pg, and department) to standardized (aka not-created-by-athena) timezone strings.",General,22.10,Simple
+448,ATHENAONE,AUTHORIZATIONTASKSTATUS,AUTHORIZATIONTASKSTATUS,Stores information about authorization task statuses.,Clinicals,22.10,Simple
+449,ATHENAONE,DOCUMENTINSURANCE,DOCUMENTINSURANCE,Stores patient insurances and their sequence,Clinicals,22.10,Simple
+450,ATHENAONE,DOCUMENTREQUISITION,DOCUMENTREQUISITION,,Clinicals,22.10,Simple
+451,ATHENAONE,PORTALADOPTIONACTION,PORTALADOPTIONACTION,"This table is to track actions related to driving portal adoption email captures, invites sent, portal registrations, etc. This is mainly used for reporting, but also as a ""game layer"" to encourage practices to boost portal adoption.",Patient Experience,22.10,Simple
+452,ATHENAONE,PORTALADOPTIONACTIONCLASS,PORTALADOPTIONACTIONCLASS,,Patient Experience,22.10,Simple
+453,ATHENAONE,VITAL,VITAL,Represents a logical group of vital attributes,Clinicals,22.10,Simple
+454,ATHENAONE,VITALATTRIBUTE,VITALATTRIBUTE,Represents one attribute of a physical measurement or finding,Clinicals,22.10,Simple
+455,ATHENAONE,VITALATTRIBUTEGROUP,VITALATTRIBUTEGROUP,Represents a group of vital attributes at a level of abstraction higher than the vital table.,Clinicals,22.10,Simple
+456,ATHENAONE,GENDERIDENTITY,GENDERIDENTITY,Used to store different gender identity labels,General,22.10,Simple
+457,ATHENAONE,PATIENTMESSAGEREQUEST,PATIENTMESSAGEREQUEST,This table stores a log of the messages that have been exported to the Patient Message Queue.,Patient Experience,22.10,Simple
+458,ATHENAONE,PATIENTMESSAGEREQUESTEMAIL,PATIENTMESSAGEREQUESTEMAIL,This is a join table to the PATIENTMESSAGEREQUEST table that stores email specific data for the PMR row.,Patient Experience,22.10,Simple
+459,ATHENAONE,PATIENTMESSAGEREQUESTSMS,PATIENTMESSAGEREQUESTSMS,This is a join table to the PATIENTMESSAGEREQUEST table that stores SMS specific data for the PMR row.,Patient Experience,22.10,Simple
+460,ATHENAONE,PCAUTOMATEDMESSAGELOG,PCAUTOMATEDMESSAGELOG,This table links results from any given automated messaging campaign to a patient (client.id),Patient Experience,22.10,Simple
+461,ATHENAONE,PCRESULTCODE,PCRESULTCODE,This table stores a master list of call result codes for patient cycle,Patient Experience,22.10,Simple
+462,ATHENAONE,QMCAMPAIGN,QMCAMPAIGN,"Describes QM population management campaigns, which are implemented via GroupCall, and defined by a set of QM measures.",Clinicals,22.10,Simple
+463,ATHENAONE,TEMPCLAIMDIAGNOSIS,TEMPCLAIMDIAGNOSIS,A representation of diagnosis codes on a claim. This table should not be used yet as it is not guarrenteed to be accurate and will be renamed when the NDX project is released.,Collector,22.10,Simple
+464,ATHENAONE,FDB_RMIID1,FDB_RMIID1,,Clinicals,22.11,Simple
+465,ATHENAONE,FDB_RNDC14,FDB_RNDC14,,Clinicals,22.11,Simple
+466,ATHENAONE,PATIENTALLERGY,PATIENTALLERGY,"A single patient allergy, as well as references to the patient's reactions to the allergy.",Clinicals,22.11,Simple
+467,ATHENAONE,PATIENTSTATUSCODE,PATIENTSTATUSCODE,A table that holds discharge disposition codes for the inpatient setting.,Clinicals,22.11,Simple
+468,ATHENAONE,CMCAREEVENT,CMCAREEVENT,The record of a Care Event against a Chart by a Care Manager.,Clinicals,22.11,Simple
+469,ATHENAONE,CMCAREPLAN,CMCAREPLAN,The record of a Care Plan associated with a patient chart.,Clinicals,22.11,Simple
+470,ATHENAONE,CMCATEGORY,CMCATEGORY,The record of a Category.,Clinicals,22.11,Simple
+471,ATHENAONE,CMHEALTHSTATUS,CMHEALTHSTATUS,The record of a Health Status associated with a patient chart.,Clinicals,22.11,Simple
+472,ATHENAONE,CMPLANGOAL,CMPLANGOAL,The record of a Goal associated with a Care Plan.,Clinicals,22.11,Simple
+473,ATHENAONE,CMPLANPROBLEM,CMPLANPROBLEM,The record of a Problem associated with a Care Plan.,Clinicals,22.11,Simple
+474,ATHENAONE,CMPLANTASK,CMPLANTASK,The record of a Task (Patient or Care Team) associated with a Care Plan.,Clinicals,22.11,Simple
+475,ATHENAONE,CMPLANTASKRECORD,CMPLANTASKRECORD,The data recorded upon completion of a Task (Patient or Care Team).,Clinicals,22.11,Simple
+476,ATHENAONE,CMPROGRAM,CMPROGRAM,The record of a Program.,Clinicals,22.11,Simple
+477,ATHENAONE,CMPROGRAMCATEGORYMAP,CMPROGRAMCATEGORYMAP,The Category assignments of Programs.,Clinicals,22.11,Simple
+478,ATHENAONE,CMPROGRAMCHARTMAP,CMPROGRAMCHARTMAP,The record of enrollment in a Care Program against a Chart.,Clinicals,22.11,Simple
+479,ATHENAONE,LOCALPHRSTATUS,LOCALPHRSTATUS,Local override options for PUBLICHEALTHREGISTRYSTATUSes,Clinicals,22.11,Simple
+480,ATHENAONE,PUBLICHEALTHREGISTRYSTATUS,PUBLICHEALTHREGISTRYSTATUS,This extender table tracks the statuses of Public Health Registries in order to satisfy Public Health Registry measures.,Clinicals,22.11,Simple
+481,ATHENAONE,ADJUDICATIONPROGRAM,ADJUDICATIONPROGRAM,,Collector,22.11,Simple
+482,ATHENAONE,LOCALWORKLISTACTION,LOCALWORKLISTACTION,Actions taken on local worklist records,Collector,22.11,Simple
+483,ATHENAONE,CLNEYECAREEXAMCHARGEGROUP,CLNEYECAREEXAMCHARGEGROUP,,Collector,22.11,Simple
+484,ATHENAONE,CLNEYECAREEXAMPROCCODE,CLNEYECAREEXAMPROCCODE,,Collector,22.11,Simple
+485,ATHENAONE,CLNEYECAREEXAMTYPE,CLNEYECAREEXAMTYPE,Stores the different types of eye care exams that can be mapped to procedure codes for charge integration.,Collector,22.11,Simple
+486,ATHENAONE,LOCALPROCTEMPCHARGEGROUP,LOCALPROCTEMPCHARGEGROUP,Local version of athena1.chargegroup.,Collector,22.11,Simple
+487,ATHENAONE,LOCALQNRTEMPCHARGEGROUP,LOCALQNRTEMPCHARGEGROUP,,Collector,22.11,Simple
+488,ATHENAONE,LOCALQNRTEMPLATEPROCCODE,LOCALQNRTEMPLATEPROCCODE,,Collector,22.11,Simple
+489,ATHENAONE,MASTERQUESTIONNAIRETEMPLATE,MASTERQUESTIONNAIRETEMPLATE,,Clinicals,22.11,Simple
+490,ATHENAONE,CRDHEALTHPLAN,CRDHEALTHPLAN,Table for payer and interfacevendor information for the Coordinator for Healthplans project,General,22.11,Simple
+491,ATHENAONE,INTERFACEMESSAGEPARAM,INTERFACEMESSAGEPARAM,Table used for storing parameters for individual interface messages.,General,22.11,Simple
+492,ATHENAONE,USERACCESS,USERACCESS,,General,22.11,Simple
+493,ATHENAONE,VISITCHARGE,VISITCHARGE,Charges accumulating on a visit to eventually be placed on claims.,Clinicals,22.11,Simple
+494,ATHENAONE,QUESTIONNAIREQUESTION,QUESTIONNAIREQUESTION,Contains all of the questions used in QUESTIONNAIRETEMPLATE. These questions do not need to be unique to a specific questionnaire,Clinicals,23.1,Simple
+495,ATHENAONE,CLINICALORDERTYPECPT,CLINICALORDERTYPECPT,This holds the REAL mapping from clinical order types to procedure codes (CPTs).,Clinicals,23.1,Simple
+496,ATHENAONE,PAYTOADDRESS,PAYTOADDRESS,,Collector,23.1,Simple
+497,ATHENAONE,PATIENTSATISFACTIONAUDR,PATIENTSATISFACTIONAUDR,,Clinicals,23.1,Simple
+498,ATHENAONE,ERABATCH,ERABATCH,,Collector,23.1,Simple
+499,ATHENAONE,LEVELOFCARE,LEVELOFCARE,Defines the level of care for a visit,Clinicals,23.1,Simple
+500,ATHENAONE,OUTSTANDINGPCHOICE,OUTSTANDINGPCHOICE,Stores the different choices that users choose from when explaining not collecting outstanding balance.,Collector,23.2,Simple
+501,ATHENAONE,COPAYCHOICE,COPAYCHOICE,Stores the different choices that users choose from when explaining not collecting copay.,Collector,23.2,Simple
+502,ATHENAONE,COPAYTYPE,COPAYTYPE,,Collector,23.2,Simple
+503,ATHENAONE,PROVIDERTYPE,PROVIDERTYPE,,General,23.2,Simple
+504,ATHENAONE,USERPOSITION,USERPOSITION,This table holds the userposition data used in the userprofile screen,General,23.2,Simple
+505,ATHENAONE,ACCOUNTINGCATEGORY,ACCOUNTINGCATEGORY,"Used only organize unpostables into financial journal entries by way of their types (ERADISCARDSTATUSREASONIDs, which have a foreign key to this table).",Collector,23.2,Simple
+506,ATHENAONE,BANKSTATEMENTACCOUNT,BANKSTATEMENTACCOUNT,,Collector,23.2,Simple
+507,ATHENAONE,ERADISCARDSTATUSREASON,ERADISCARDSTATUSREASON,,Collector,23.2,Simple
+508,ATHENAONE,PUBLICHEALTHREGISTRY,PUBLICHEALTHREGISTRY,Stores data about public health registries,Clinicals,23.2,Simple
+509,ATHENAONE,INSURANCEPRODUCTTYPE,INSURANCEPRODUCTTYPE,Stores information about product types associated with insurances,Collector,23.2,Simple
+510,ATHENAONE,P4PHCCCONFIGURATION,P4PHCCCONFIGURATION,Stores the configuration info about the HCC codes and RAF Weight,Clinicals,23.2,Simple
+511,ATHENAONE,DOCUMENTSCANPAGE,DOCUMENTSCANPAGE,,Collector,23.4,Simple
+512,ATHENAONE,FAXPAGE,FAXPAGE,,Collector,23.4,Simple
+513,ATHENAONE,PATIENTLOCATIONDEPARTMENT,PATIENTLOCATIONDEPARTMENT,,Clinicals,23.4,Simple
+514,ATHENAONE,LOCALCLINICALORDERSETUSAGE,LOCALCLINICALORDERSETUSAGE,Aggregation table for the number of times a clinical order set was used in the last year for the given filters on this practice.,Clinicals,23.4,Simple
+515,ATHENAONE,CRDIHETRANSACTION,CRDIHETRANSACTION,"Records a row for every transaction associated with sending/retrieving patient information (PDQ,XCPD,RSQ,RDS).",Clinicals,23.4,Simple
+516,ATHENAONE,CHARTSNOMEDICD,CHARTSNOMEDICD,Associates an ICD code with an ICD event.,Clinicals,23.4,Simple
+517,ATHENAONE,CHARTSNOMEDICDEVENT,CHARTSNOMEDICDEVENT,"Associates an ICD event with a chart and SNOMED code. An event can be an encounter, import--any association of ICD to SNOMED codes. The preferred set of ICD codes for a given SNOMED code is the set from the most recent event.",Clinicals,23.4,Simple
+518,ATHENAONE,CLIENTFILETRANSFERDETAILS,CLIENTFILETRANSFERDETAILS,Table used to store information of file transfer request details.,Collector,23.4,Simple
+519,ATHENAONE,CLIENTFILETRANSFERREQUEST,CLIENTFILETRANSFERREQUEST,Table used to store information of file transfer request.,Collector,23.4,Simple
+520,ATHENAONE,IMPORTTASKREQUEST,IMPORTTASKREQUEST,Table used to store information about import requests for this tablespace. An import request contains information related to a single entry in the IMPORT table,Collector,23.4,Simple
+521,ATHENAONE,CHARTQNRMETAQAMAP,CHARTQNRMETAQAMAP,Stores the answer to a questionnaire meta-question.,Clinicals,23.4,Simple
+522,ATHENAONE,QNRMETAQUESTION,QNRMETAQUESTION,Defines the meta questions that apply to an entire questionnaire.,Clinicals,23.4,Simple
+523,ATHENAONE,QNRMETAQUESTIONANSWER,QNRMETAQUESTIONANSWER,Stores possible answers associated with questionnaire metaquestions.,Clinicals,23.4,Simple
+524,ATHENAONE,QUESTIONNAIRETEMPLATEQUESTION,QUESTIONNAIRETEMPLATEQUESTION,Links a questionnaire with all of its questions from the QUESTION table.,Clinicals,23.4,Simple
+525,ATHENAONE,CLINENCPREPNOTEAUDR,CLINENCPREPNOTEAUDR,,Clinicals,23.4,Simple
+526,ATHENAONE,CLINICALENCOUNTERPREPNOTE,CLINICALENCOUNTERPREPNOTE,Table to keep track of the encounter prep notes for a given clinicalencounter.,Clinicals,23.4,Simple
+527,ATHENAONE,ERAKICK,ERAKICK,"ERAKICK is a subset of the fields in ERARECORD that refer to kicks. This structure will replace ERARECORD's fields after 9.4 for any kick or kick related tracking. It was designed so that more than one kick can be associated with an ERARECORD. Since now an ERARECORD is one for one service, a service may have more than one kick. This will also aid in reducing the overhead of the remove canonical project. See also ERACLAIMKICK, which will hold claim level kick information for certain payers (initially only United).",Collector,23.4,Simple
+528,SCHEDULING,TELEHEALTH,TELEHEALTH,Telehealth Usage report data,Collector,23.5,Governed / Analytical
+529,ATHENAONE,SELFCHECKINSECTION,SELFCHECKINSECTION,"This table keeps track of the progress in a particular section (e.g., PAYMENT) of self check in for a particular SELFCHECKINWORKFLOW row.",Collector,23.5,Simple
+530,ATHENAONE,SELFCHECKINSECTIONCLASS,SELFCHECKINSECTIONCLASS,A list of sections that the self checkin workflow can display.,Collector,23.5,Simple
+531,ATHENAONE,FDB_REVDMVX0,FDB_REVDMVX0,"Provides attributes of MVX codes. This is one of the few FDB table that had a non-FDB table with an explicit FOREIGNKEY pointing at it. Consequently, it has not moved to snapshot group 2 with all the other FDB tables, but hopefully we can find a way to do that in the future",Collector,23.5,Simple
+532,ATHENAONE,SIGNATURESOURCE,SIGNATURESOURCE,,Collector,23.5,Simple
+533,ATHENAONE,PROCEDURECODEMODIFIER,PROCEDURECODEMODIFIER,,Collector,23.5,Simple
+534,ATHENAONE,MAILBOXCATEGORY,MAILBOXCATEGORY,,Collector,23.5,Simple
+535,ATHENAONE,MAILBOXDEPOSIT,MAILBOXDEPOSIT,,Collector,23.5,Simple
+536,ATHENAONE,DEPARTMENTDESIGNATION,DEPARTMENTDESIGNATION,,Collector,23.5,Simple
+537,ATHENAONE,DEPARTMENTDESIGNATIONGROUP,DEPARTMENTDESIGNATIONGROUP,To link department designation to existing suites(derived from existing insurance groups). Each row will represent an association between a department designation and an insurance group(stored as designationgroup),Collector,23.5,Simple
+538,ATHENAONE,DEPARTMENTDESIGNATIONGROUP,DEPARTMENTDESIGNATIONINSPKG,,Collector,23.5,Simple
+539,ATHENAONE,GOVERNMENTDESIGNATION,GOVERNMENTDESIGNATION,,Collector,23.5,Simple
+540,ATHENAONE,GLOBALFLOWSHEETELEMENT,GLOBALFLOWSHEETELEMENT,"While there is already a ""RELATIONSHIPTOINSURED"" table, we created a new one to better server the purposed of describing the relationship of a third party user to a mapped patient.",Collector,23.5,Simple
+541,ATHENAONE,PORTALUSERRELATIONSHIP,PORTALUSERRELATIONSHIP,Stores the Global Business Requirement Information,Collector,23.5,Simple
+542,ATHENAONE,GLOBALBIZREQUIREMENT,GLOBALBIZREQUIREMENT,,Collector,23.5,Simple
+543,ATHENAONE,LOCALBIZREQUIREMENT,LOCALBIZREQUIREMENT,,Collector,23.5,Simple
+544,ATHENAONE,NETWORKBIZREQUIREMENT,NETWORKBIZREQUIREMENT,Stores the charges linked to each charge master code,Collector,23.5,Simple
+545,ATHENAONE,CHARGEMASTERCHARGE,CHARGEMASTERCHARGE,Stores the hospital codes for the charge master,Collector,23.5,Simple
+546,ATHENAONE,CHARGEMASTERCODE,CHARGEMASTERCODE,,Collector,23.5,Simple
+547,ATHENAONE,REVENUECODE,REVENUECODE,This table stores a list of sources for each row in patientmessagerequest.,Clinicals,23.5,Simple
+548,ATHENAONE,PATIENTMESSAGESOURCE,PATIENTMESSAGESOURCE,,Clinicals,23.5,Simple
+549,ATHENAONE,CLINICALORDERGENUS,CLINICALORDERGENUS,,General,23.7,Simple
+550,ATHENAONE,REFERRINGPROVIDERNUMBER,REFERRINGPROVIDERNUMBER,,General,23.7,Simple
+551,ATHENAONE,PAGEVIEW,PAGEVIEW,The list of chief complaint options in the emergency department,Clinicals,23.7,Simple
+552,ATHENAONE,EDCHIEFCOMPLAINT,EDCHIEFCOMPLAINT,,Collector,23.7,Simple
+553,ATHENAONE,APPOINTMENTTYPEAUDR,APPOINTMENTTYPEAUDR,,General,23.7,Simple
+554,ATHENAONE,ATTACHMENT,ATTACHMENT,,Collector,23.7,Simple
+555,ATHENAONE,CLAIMATTACHMENT,CLAIMATTACHMENT,Table containing the result categories selected in the TAO admin page,Clinicals,23.7,Simple
+556,ATHENAONE,ACTIONREASONRULERESULTCATEGORY,ACTIONREASONRULERESULTCATEGORY,Maps task assignment overrides (TAOs) to document action reasons that they apply to.,Clinicals,23.7,Simple
+557,ATHENAONE,ACTIONREASONRULEACTION,ACTIONREASONRULEACTION,Maps task assignment overrides (TAOs) to the document classes and subclasses that they apply to.,Clinicals,23.7,Simple
+558,ATHENAONE,ACTIONREASONRULECLASS,ACTIONREASONRULECLASS,Maps task assignment overrides (TAOs) to the departments they apply to.,Clinicals,23.7,Simple
+559,ATHENAONE,ACTIONREASONRULEDEPARTMENT,ACTIONREASONRULEDEPARTMENT,Maps task assignment overrides (TAOs) to the order genuses that they apply to.,Clinicals,23.7,Simple
+560,ATHENAONE,ACTIONREASONRULEORDERGENUS,ACTIONREASONRULEORDERGENUS,Represents a Task Assignment Override (TAO). These are client-configurable rules which automatically reassign documents under certain circumstances when document actions are taken.,Clinicals,23.7,Simple
+561,ATHENAONE,DOCUMENTACTIONREASONRULE,DOCUMENTACTIONREASONRULE,"This table stores settings for the Patient Portal. A given setting may come from the settings for a single brand, or if there is no setting for that brand, from the practice setting row, or if that is not there, from a table of global defaults.",Patient Experience,23.7,Simple
+562,ATHENAONE,PORTALSETTING,PORTALSETTING,Settings specific to the GroupCall product,Patient Experience,23.7,Simple
+563,ATHENAONE,GLOBALPATMSGGCSETTING,GLOBALPATMSGGCSETTING,Settings specific to the GroupCall product,Patient Experience,23.7,Simple
+564,ATHENAONE,PATMSGGCSETTING,PATMSGGCSETTING,This table stores the data gathered when a user indicates that an item from the LOCCLINOBPLANDISCUSSION table was discussed with the patient.,Clinicals,23.7,Simple
+565,ATHENAONE,CLNOBPLANDISCUSSION,CLNOBPLANDISCUSSION,This table stores each item listed in the Plan/Education section of an OB episode. These are the recommended items from ACOG. They are divided into the trimester which they are reviewed.,Clinicals,23.7,Simple
+566,ATHENAONE,GLBCLNOBPLANDISCUSSIONITEM,GLBCLNOBPLANDISCUSSIONITEM,This table stores each item listed in the Plan/Education section of an OB episode. These are the items the practice has chosen to appear in their OB episodes.,Clinicals,23.7,Simple
+567,ATHENAONE,LOCCLNOBPLANDISCUSSIONITEM,LOCCLNOBPLANDISCUSSIONITEM,"Codified reasons that a vaccine was intentionally not given to a patient. Some reasons are hierarchical, so this table also joins to itself. Also contains metadata that assists with grouping and presenting these codes in the UI. The codification in this table is athena-specific, as this table is intended solely for presenting the codified values to athenaNet users; to obtain the corresponding code value in an externally standardized code system, see VACCINEREFUSEDREASONCODE.",Clinicals,23.7,Simple
+568,ATHENAONE,VACCINEREFUSEDREASON,VACCINEREFUSEDREASON,"Maps task assignment overrides (TAOs) to the providers that they apply to. This represents the provider associated with the document, not necessarily the user taking the action or the document's assignee.",Clinicals,23.7,Simple
+569,ATHENAONE,ACTIONREASONRULEPROVIDER,ACTIONREASONRULEPROVIDER,Mapping from documentactionreasonrule to procedure status.,Clinicals,23.7,Simple
+570,ATHENAONE,ACTIONREASONRULEPROCSTATUS,ACTIONREASONRULEPROCSTATUS,Various user timing and activity metrics for streamlined pages (currently just the exam and intak eencounter),General,23.12,Simple
+571,ATHENAONE,USERACTIVITYTIMER,USERACTIVITYTIMER,,Collector,24.3,Simple
+572,ATHENAONE,MSPQANSWER,MSPQANSWER,,Collector,24.3,Simple
+573,ATHENAONE,MSPQUESTIONNAIRE,MSPQUESTIONNAIRE,Table for waitlist,Collector,24.3,Simple
+574,ATHENAONE,WAITLIST,WAITLIST,Table to store the appointment types selected for a waitlist.,Collector,24.3,Simple
+575,ATHENAONE,WAITLISTAPPOINTMENTTYPE,WAITLISTAPPOINTMENTTYPE,Table to store the day of the week selected for a waitlist.,Collector,24.3,Simple
+576,ATHENAONE,WAITLISTDAYOFWEEK,WAITLISTDAYOFWEEK,Table to store the departments selected for a waitlist.,Collector,24.3,Simple
+577,ATHENAONE,WAITLISTDEPARTMENT,WAITLISTDEPARTMENT,Table to store the providers selected for a waitlist.,Collector,24.3,Simple
+578,ATHENAONE,WAITLISTPROVIDER,WAITLISTPROVIDER,Used for storing reasons why an order's results should be excluded from automatic publishing to the patient portal.,Collector,24.3,Simple
+579,ATHENAONE,RESULTPORTALEXCLUDEREASON,RESULTPORTALEXCLUDEREASON,,Clinicals,24.3,Simple
+580,ATHENAONE,CLINICALENCOUNTERREASONUSER,CLINICALENCOUNTERREASONUSER,,Clinicals,24.3,Simple
+581,ATHENAONE,CLINICALENCREASONSPECIALTY,CLINICALENCREASONSPECIALTY,,Clinicals,24.3,Simple
+582,ATHENAONE,CLIENTAUDR,CLIENTAUDR,"Maps USERNAMEs from USERPROFILE to CONTEXTIDs for which that user has access. Note that if a user has access to the ancestor of a given context, it has access to that context as well (consequently if a user has access to the root context, it has access to all contexts unless otherwise limited in USERCONTEXTLIMIT)",Collector,24.3,Simple
+583,ATHENAONE,USERCONTEXT,USERCONTEXT,,Clinicals,24.3,Simple
+584,ATHENAONE,CLINICALENCOUNTERPLAN,CLINICALENCOUNTERPLAN,,Collector,24.3,Simple
+585,ATHENAONE,FEESCHEDALLOWABLECATEGORY,FEESCHEDALLOWABLECATEGORY,,Collector,24.3,Simple
+586,ATHENAONE,PROBLEMLIST,PROBLEMLIST,,Collector,24.3,Simple
+587,ATHENAONE,PROBLEMLISTTYPE,PROBLEMLISTTYPE,,Collector,24.3,Simple
+588,ATHENAONE,EPISODEOBAUDR,EPISODEOBAUDR,,Collector,24.3,Simple
+589,ATHENAONE,ELIGIBILITYRELATEDENTITY,ELIGIBILITYRELATEDENTITY,Encapsulates default routes regarding a clinicalordertype,Clinicals,24.3,Simple
+590,ATHENAONE,LOCALCLINICALORDERROUTE,LOCALCLINICALORDERROUTE,,Collector,24.3,Simple
+591,ATHENAONE,INTERFACEMESSAGEDATACLOB,INTERFACEMESSAGEDATACLOB,Maps athena VACCINEREFUSEDREASON values to externally standardized codes so they may be expressed to third parties (i.e. immunization registries).,Collector,24.3,Simple
+592,ATHENAONE,VACCINEREFUSEDREASONCODE,VACCINEREFUSEDREASONCODE,An account for corporate care billing,Collector,24.3,Simple
+593,ATHENAONE,CORPORATEACCOUNT,CORPORATEACCOUNT,An insurance package associated with a corporate billing account,Collector,24.3,Simple
+594,ATHENAONE,CORPACCOUNTINSURANCEPACKAGE,CORPACCOUNTINSURANCEPACKAGE,Group of procedure codes allowed to be billed on a corporate account with properties including designated fee schedule and effective and expiration dates.,Collector,24.3,Simple
+595,ATHENAONE,CORPACCOUNTPROCEDUREGROUP,CORPACCOUNTPROCEDUREGROUP,Procedure codes and that are allowed to be billed from a corporate account and any price overrides.,Collector,24.3,Simple
+597,ATHENAONE,CORPORATEACCOUNTINVOICE,CORPORATEACCOUNTINVOICE,An invoice associated with a corporate account,Collector,24.3,Simple
+598,ATHENAONE,CORPACCOUNTINVOICECLAIM,CORPACCOUNTINVOICECLAIM,Stores claim ids for each instance of a corporate account invoice,Collector,24.3,Simple
+599,ATHENAONE,CORPORATEINVOICECLAIM,CORPORATEINVOICECLAIM,Table to store corporate billing invoice claim information,Collector,24.3,Simple
+600,ATHENAONE,RCNSUGGESTIONMAPPING,RCNSUGGESTIONMAPPING,Relation between risk condition and suggestions,Collector,24.3,Simple
+601,ATHENAONE,RISKCONDITION,RISKCONDITION,"Stores clinical condition, problem, diagnosis, or other event, situation, issue, or clinical concept that has risen to a level of concern",Collector,24.3,Simple
+602,ATHENAONE,RISKPARTNER,RISKPARTNER,Risk partner details received from third party,Collector,24.3,Simple
+603,ATHENAONE,LOCALCLINICALTEMPLATEELEMENT,LOCALCLINICALTEMPLATEELEMENT,Risk partner details received from third party,Collector,24.3,Simple
+604,ATHENAONE,HCCVERSIONMGMT,HCCVERSIONMGMT,Includes all the supported HCC versions,Collector,24.3,Simple
+605,ATHENAONE,HCCMODELCONFIGURATION,HCCMODELCONFIGURATION,"Stores blended score configuration like blending ratio, priority, etc for CMS-HCC model.",Collector,24.3,Simple
+606,ATHENAONE,ETHNICITY,ETHNICITY,,Clinicals,24.3,Simple
+607,ATHENAONE,PATIENTETHNICITY,PATIENTETHNICITY,Stores an arbitrary number of ethnicities for each patient.,Clinicals,24.3,Simple
+608,ATHENAONE,PCCAMPAIGNLOG,PCCAMPAIGNLOG,"This table contains all of the information specific to a groupcall campaigns messaging settings, including the reoccurence settings and some book-keeping fields specific to campaignbuilder.esp",Clinicals,24.3,Simple
+609,ATHENAONE,PCCAMPAIGNTYPE,PCCAMPAIGNTYPE,,Clinicals,24.3,Simple
+610,ATHENAONE,SELFPAYCALLCAMPAIGN,SELFPAYCALLCAMPAIGN,,Collector,24.3,Simple
+611,ATHENAONE,CLINICALENCOUNTERSECTIONTIME,CLINICALENCOUNTERSECTIONTIME,Tracks classic encounter documentation time (by section and stage).,Clinicals,24.7,Simple
+612,ATHENAONE,CMLOCALPROGRAM,CMLOCALPROGRAM,The local program for this practice,Clinicals,24.7,Simple
+613,ATHENAONE,PATIENTSATISFACTIONRESULT,PATIENTSATISFACTIONRESULT,Contains provider satisfaction scores based on data from a third party.,Clinicals,24.7,Simple
+614,ATHENAONE,AIRLOCKACCELERATOR,AIRLOCKACCELERATOR,Tracks uses of airlock accelerators.,Clinicals,24.7,Simple
+615,ATHENAONE,ORDERCHECKLISTDEPARTMENT,ORDERCHECKLISTDEPARTMENT,,Clinicals,24.7,Simple
+616,ATHENAONE,ORDERCHECKLISTTEMPLATE,ORDERCHECKLISTTEMPLATE,,Clinicals,24.7,Simple
+617,ATHENAONE,ORDERCHECKLISTELEMENT,ORDERCHECKLISTELEMENT,,Clinicals,24.7,Simple
+618,ATHENAONE,ORDERCHECKLISTVALUE,ORDERCHECKLISTVALUE,,Clinicals,24.7,Simple
+619,ATHENAONE,CLAIMSUBMISSIONCATEGORY,CLAIMSUBMISSIONCATEGORY,,Collector,24.7,Simple
+620,ATHENAONE,INSPACKAGERESTRICTION,INSPACKAGERESTRICTION,,Collector,24.7,Simple
+621,ATHENAONE,NONINSURANCETYPE,NONINSURANCETYPE,,Collector,24.7,Simple
+622,ATHENAONE,PAYERDIAGNOSISVERSION,PAYERDIAGNOSISVERSION,,Collector,24.7,Simple
+623,ATHENAONE,BANKSTATEMENTACCOUNTENTITY,BANKSTATEMENTACCOUNTENTITY,,Collector,24.7,Simple
+624,ATHENAONE,PREVIOUSNAME,PREVIOUSNAME,"Stores Previous Name information, as specified by the ONC, in order to capture situations where a patient may use an alias (e.g., maiden name, family name, legally changed last name). See h#1000060 for context.",Collector,24.7,Simple
+625,ATHENAONE,PREVIOUSNAMETYPE,PREVIOUSNAMETYPE,Captures information regarding the type of a Previous Name as specified by the ONC.,Collector,24.7,Simple
+626,ATHENAONE,RISKCONDITIONRAMMAP,RISKCONDITIONRAMMAP,Risk condition mappings with risk adjustment model version,Clinicals,24.7,Simple
+627,ATHENAONE,PATIENTRCNATTRVAL,PATIENTRCNATTRVAL,Mapping for patient risk condition and risk condition attribute in risk adjustment model,Clinicals,24.7,Simple
+628,ATHENAONE,PATIENTRCNMAPPING,PATIENTRCNMAPPING,Mapping for riskcondition and patient risk condition in risk adjustment model,Clinicals,24.7,Simple
+629,ATHENAONE,PATIENTRCNSRCATTRVAL,PATIENTRCNSRCATTRVAL,Value of risk condition source attribute for risk adjustment model,Clinicals,24.7,Simple
+630,ATHENAONE,PATIENTRISKCONDITION,PATIENTRISKCONDITION,Risk conditions of the patient for each risk adjustment model,Clinicals,24.7,Simple
+631,ATHENAONE,RAMATTRIBUTE,RAMATTRIBUTE,List of risk adjustment model value attributes,Clinicals,24.7,Simple
+632,ATHENAONE,RCNRAMATTRVAL,RCNRAMATTRVAL,Risk adjustment model attribute values of risk condition,Clinicals,24.7,Simple
+633,ATHENAONE,RISKADJUSTMENTMODEL,RISKADJUSTMENTMODEL,"List of risk adjustment models supported. Ex: CMS-HCC, CMS-HHS",Clinicals,24.7,Simple
+634,ATHENAONE,RISKCONDITIONSRCATTR,RISKCONDITIONSRCATTR,List of riskcondition source attributes,Clinicals,24.7,Simple
+635,ATHENAONE,RISKCONDITIONSRCTYPE,RISKCONDITIONSRCTYPE,"List of RISKCONDITION source types. Ex: Manual, Claim, External",Clinicals,24.7,Simple
+636,ATHENAONE,RISKCONDITIONSTATENAME,RISKCONDITIONSTATENAME,"List of RISKCONDITION states. Ex: Open , Dismissed, Closed",Clinicals,24.7,Simple
+637,ATHENAONE,RISKMODELVERSION,RISKMODELVERSION,List of version supported for risk adjustment models,Clinicals,24.7,Simple
+638,ATHENAONE,DIAGNOSISCODESET,DIAGNOSISCODESET,,Clinicals,24.7,Simple
+639,ATHENAONE,INVPREFCARDCLINORDTYPE,INVPREFCARDCLINORDTYPE,Join table for preference card and the clinical order type the preference card is for.,Clinicals,24.7,Simple
+640,ATHENAONE,INVPREFERENCECARD,INVPREFERENCECARD,"Table for storing a provider's preference cards for perioperative use. A preference card contains the provider id, the clinical order type id, and perhaps a name of the preference card. The ID is then joined into the INVPREFERENCECARDITEM table to see what items belong to the preference card.",Clinicals,24.7,Simple
+641,ATHENAONE,CLINICALTASK,CLINICALTASK,Used for storing denormalized data about Clinical Inbox items,Clinicals,24.7,Simple
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,

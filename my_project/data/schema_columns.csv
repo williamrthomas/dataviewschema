@@ -1,0 +1,10 @@
+﻿schema_name,table_name,column_name,data_type,is_primary_key,is_foreign_key,references_schema,references_table,references_column,description
+ATHENAONE,ALLOWABLESCHEDULECATEGORY,CONTEXTID,NUMBER(12,0),true,false,,,,"The ID of the tablespace this record comes from."
+ATHENAONE,ALLOWABLESCHEDULECATEGORY,CONTEXTNAME,VARCHAR(16777216),false,false,,,,"The name of the tablespace this record comes from"
+ATHENAONE,ALLOWABLESCHEDULECATEGORY,CONTEXTPARENTCONTEXTID,NUMBER(12,0),false,true,ATHENAONE,ALLOWABLESCHEDULECATEGORY,CONTEXTID,"The Parent tablespace ID of the tablespace this record comes from"
+ATHENAONE,ALLOWABLESCHEDULECATEGORY,ALLOWABLESCHEDULECATEGORYID,NUMBER(22,0),true,false,,,,"The athena-assigned ID for the allowable category: a group of insurance packages that use the same allowable schedule. Defined by any of the following: Insurance Reporting Category, Insurance Product Type, and/or Insurance Package."
+ATHENAONE,ALLOWABLESCHEDULECATEGORY,TYPE,VARCHAR(16777216),true,false,,,,"Either GLOBAL (athenaNet standard allowable category for the insurance package) or LOCAL (client-defined allowable category for the insurance package)."
+ATHENAONE,ALLOWABLESCHEDULECATEGORY,OPERATIONID,NUMBER(12,0),true,false,,,,""
+ATHENAONE,ALLOWABLESCHEDULECATEGORY,FEESCHEDULEID,NUMBER(12,0),false,true,ATHENAONE,FEESCHEDULE,FEESCHEDULEID,"The ID for the fee schedule. A fee schedule specifies a payer and a date range for which a particular fee is valid for a procedure."
+ATHENAONE,ALLOWABLESCHEDULECATEGORY,NAME,VARCHAR(16777216),false,false,,,,"The name of the allowable category."
+ATHENAONE,ALLOWABLESCHEDULECATEGORY,DELETEDDATETIME,TIMESTAMP_NTZ(9),false,false,,,,"The date and time, in US/Eastern, the allowable category was deleted."
